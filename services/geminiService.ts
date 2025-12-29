@@ -1,15 +1,9 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import { Chapter, QuizDifficulty, QuizQuestion } from '../types';
 
-// FIX: Per @google/genai guidelines, the API key MUST be retrieved from process.env.API_KEY.
-const API_KEY = process.env.API_KEY;
-
-if (!API_KEY) {
-    // A mensagem de erro agora reflete a variável correta.
-    throw new Error("API_KEY environment variable not set");
-}
-
-const ai = new GoogleGenAI({ apiKey: API_KEY });
+// FIX: Per @google/genai guidelines, the API key is assumed to be available
+// from process.env.API_KEY and used directly for initialization.
+const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 const quizQuestionSchema = {
     type: Type.OBJECT,
