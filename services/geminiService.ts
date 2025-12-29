@@ -1,11 +1,11 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import { Chapter, QuizDifficulty, QuizQuestion } from '../types';
 
-// Fix: Adhering to guideline to use process.env.API_KEY for the API key. This also resolves the TypeScript error on import.meta.env.
+// FIX: Per @google/genai guidelines, the API key MUST be retrieved from process.env.API_KEY.
 const API_KEY = process.env.API_KEY;
 
 if (!API_KEY) {
-    // Fix: Updated error message to reflect the new environment variable name.
+    // A mensagem de erro agora reflete a variável correta.
     throw new Error("API_KEY environment variable not set");
 }
 
@@ -44,7 +44,6 @@ export const generateQuiz = async (
     numberOfQuestions: number = 60,
     requestExplanation: boolean = true
 ): Promise<QuizQuestion[]> => {
-    // Fix: Using a more powerful model for a complex task like quiz generation, as per guidelines.
     const model = 'gemini-3-pro-preview';
 
     const textContent = content.map(chapter => 
