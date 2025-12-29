@@ -1002,188 +1002,112 @@ h. Impenetrabilidade - significa que dois corpos não podem ocupar o mesmo espa�
   },
   {
     id: 'cap6',
-    title: 'CAPÍTULO 6: MATERIAIS DE AVIAÇÃO E PROCESSOS',
+    title: 'CAPÍTULO 6: QUEROSENE DE AVIAÇÃO',
     topics: [
         {
-            id: 'map-intro',
-            title: 'IDENTIFICAÇÃO E PRENDEDORES',
+            id: 'qav-definicao',
+            title: 'DEFINIÇÃO E COMPOSIÇÃO',
             subTopics: [
                 {
-                    id: 'map-intro-1',
-                    title: 'Identificação dos Materiais de Aviação',
-                    content: `A maioria dos itens são identificados por números de especificação ou nome do fabricante. Peças com fios de rosca e rebites são usualmente identificados pelas letras AN (Air Force - Navy), NAS (National Aircraft Standard), ou MS (Military Standard) seguidas de números. Os prendedores de desconexão rápida são usualmente identificados por nomes dados pelo fabricante e pela designação dos tamanhos.`
-                },
-                {
-                    id: 'map-intro-2',
-                    title: 'Prendedores Rosqueados',
-                    content: `Os vários tipos de dispositivos de fixação, ou de fechamento, permitem uma rápida desmontagem e recolocação de partes de aeronaves, que devem ser separadas e conectadas em intervalos freqüentes. Entende-se por parafusos, dispositivos de fixação, que permitem segurança e rigidez na união de peças. Existem dois tipos: os utilizados em mecânica (bolts), geralmente quando se necessita grande firmeza; e os de rosca soberba (screws), quando a firmeza não é um fator importante.`
-                },
-                {
-                    id: 'map-intro-3',
-                    title: 'Classificação dos Fios de Rosca',
-                    content: `Para os parafusos para aeronaves (bolts); ou os de rosca soberba (screws); e porcas, são fabricados em um dos seguintes tipos de fios de rosca: NC (American National Coarse), NF (American National Fine), UNC (American Standard Unified Coarse) ou UNF (American Standard Unified Fine). As roscas são também especificadas em classes de acabamento (Classe 1 a 4), que indicam a tolerância permitida.`
-                },
-            ]
-        },
-        {
-            id: 'map-parafusos',
-            title: 'PARAFUSOS DE AVIAÇÃO',
-            subTopics: [
-                {
-                    id: 'map-parafusos-1',
-                    title: 'Parafusos de Uso Geral',
-                    content: `Os parafusos de cabeça hexagonal (AN-3 até AN-20), são usados em estruturas, e em aplicações gerais, que envolvam cargas de tensão e de cizalhamento. Os parafusos de ligas de aço, menores do que o nº 10-32; e os de liga de alumínio, menores do que 1/4" de diâmetro, nunca devem ser usados em peças estruturais. O parafuso AN-73 é semelhante ao cabeça hexagonal padrão, porém, possue uma depressão na cabeça e um furo para passagem de arame de freno.`
-                },
-                {
-                    id: 'map-parafusos-2',
-                    title: 'Parafusos de Tolerância Fechada',
-                    content: `Esse tipo de parafuso é fabricado com mais cuidado do que o de uso geral. Os parafusos de tolerância mínima podem ser de cabeça hexagonal (AN-173 até AN-186) ou ser de cabeça chanfrada a 100º (NAS-80 até NAS-86). Eles são usados em aplicações onde uma ajustagem forte é requerida.`
-                },
-                {
-                    id: 'map-parafusos-3',
-                    title: 'Parafusos de Fixação Interna',
-                    content: `Estes parafusos (MS-20004 até MS-20024 ou NAS-495), são fabricados de um aço de alta resistência, e são adequados para o uso em locais onde são exigidos esforços de tensão e cizalhamento. A cabeça do parafuso de chave interna é rebaixada para permitir a inserção de uma chave interna ao instalar ou remover o parafuso.`
-                },
-                {
-                    id: 'map-parafusos-4',
-                    title: 'Identificação e Codificação',
-                    content: `Os parafusos de aeronaves do tipo AN podem ser identificados pelas marcações de código nas cabeças dos parafusos. As marcações geralmente denotam o fabricante do parafuso, o material usado para fazer o parafuso e se o parafuso é um tipo AN padrão ou um parafuso para fins especiais. Os parafusos de aço padrão AN são marcados com um traço elevado ou asterisco. Os parafusos de liga de alumínio AN são marcados com dois traços elevados para indicar aço resistente à corrosão. Os parafusos NAS de tolerância estreita são marcados com um triângulo elevado ou rebaixado.`
+                    id: 'qav-definicao-1',
+                    title: 'Composição e Características',
+                    content: `O combustível querosene de aviação é um derivado de petróleo obtido por destilação direta com faixa de temperatura de 150 °C a 300 °C, com predominância de hidrocarbonetos parafínicos de 9 a 15 átomos de carbono, utilizado em turbinas aeronáuticas. Para que esse derivado de petróleo apresente características adequadas à geração de energia para motores de turbina a gás, diversos critérios físico-químicos são requeridos durante a sua produção, que incluem desde fluidez (escoamento), estabilidade (estocagem) até a adequada combustão para esses motores.`
                 }
             ]
         },
         {
-            id: 'map-parafusos-especiais',
-            title: 'PARAFUSOS PARA FINS ESPECIAIS',
+            id: 'qav-tipos',
+            title: 'TIPOS DE QUEROSENE DE AVIAÇÃO',
             subTopics: [
                 {
-                    id: 'map-especiais-1',
-                    title: 'Parafusos de Forquilha',
-                    content: `A cabeça de um parafuso de manilha é redonda e é ranhurada para receber uma chave de fenda comum ou rebaixada para receber uma chave de fenda de ponta cruzada. Este tipo de parafuso é usado somente onde ocorrem cargas de cisalhamento e nunca em tensão. Muitas vezes é inserido como um pino mecânico em um sistema de controle.`
-                },
-                {
-                    id: 'map-especiais-2',
-                    title: 'Olhal',
-                    content: `O olhal é um parafuso para fins especiais usados onde cargas de tensão externas devem ser aplicadas. O olhal é projetado para a fixação de dispositivos, como o garfo de um esticador, um manilha ou uma manilha de cabo. A extremidade roscada pode ou não ser perfurada para segurança.`
-                },
-                {
-                    id: 'map-especiais-3',
-                    title: 'Jo-Parafuso e Parafusos de Bloqueio',
-                    content: `Jo-bolt é um nome comercial para um rebite de três peças com rosca interna. Consiste em um parafuso de liga de aço rosqueado, uma porca de aço rosqueada e uma luva de aço inoxidável expansível. Tem alta resistência ao cisalhamento e à tração.\n\nParafusos de bloqueio (Lockbolts) combinam as características de um parafuso e rebite de alta resistência. São usados em conexões de emenda de asa, trem de pouso, longarinas, etc. Três tipos são comuns: tipo de tração, tipo de toco e tipo cego.`
+                    id: 'qav-tipos-1',
+                    title: 'Querosene Civil e Militar',
+                    content: `No Brasil, a Agência Nacional do Petróleo, Gás Natural e Biocombustíveis (ANP) é o órgão regulador responsável pela especificação dos querosenes de aviação para uso na aviação civil: JET A, JET A-1 (antigo QAV-1) e JET C. O JET A difere do JET A-1 apenas na propriedade de ponto de congelamento; o JET C é composto pela mistura de um único tipo de JET alternativo com o JET A ou com o JET A-1, nas proporções definidas pela resolução da ANP (RANP N° 856/2021).\n\nO querosene de aviação para uso militar, conhecido pela sigla QAV-5, segue a especificação da Resolução CNP n°9/1987, DOU 09/04/1987. A diferença básica entre os combustíveis para uso civil (JET A e JET A-1) e uso militar (QAV-5) está na maior restrição com relação à presença de compostos leves no QAV-5, de forma a garantir a segurança no manuseio e na estocagem do produto em embarcações.`
                 }
             ]
         },
         {
-            id: 'map-porcas',
-            title: 'PORCAS DE AERONAVES',
+            id: 'qav-motores',
+            title: 'MOTORES AERONÁUTICOS',
             subTopics: [
                 {
-                    id: 'map-porcas-1',
-                    title: 'Porcas não Autotravantes',
-                    content: `A maioria dos tipos familiares de porcas, incluindo a porca lisa, a porca castelo, a porca de cisalhamento acastelada, a porca sextavada lisa, a porca sextavada leve e a porca de retenção lisa são do tipo não autotravante. A porca castelo (AN310) é usada com parafusos perfurados para contrapino. A porca de cisalhamento acastelada (AN320) é para aplicações de cisalhamento.`
+                    id: 'qav-motores-1',
+                    title: 'Tipos de Motores',
+                    content: `Os motores aeronáuticos são projetados para utilizar a expansão do ar e dos gases de combustão produzidas pela queima do querosene de aviação como força motriz.\n\nExistem quatro tipos de motores aeronáuticos: TURBOJET, TURBOSHAFT, TURBOPROP e TURBOFAN, que tem como diferença básica o tipo de acionador para geração do empuxo:\n\na) TURBOJET: a energia gerada pelos gases de exaustão é aproveitada de forma que o empuxo seja todo ele devido à saída dos gases pela parte posterior da turbina. Parte da energia gerada pelos gases é utilizada internamente para mover a turbina e o compressor, entre outros equipamentos. Exemplo: aviões militares e caças.\n\nb) TURBOSHAFT: onde a maior parte da energia dos gases é convertida em energia mecânica para acionamento da hélice, acionando também a turbina e o compressor. Exemplo: helicópteros.\n\nc) TURBOPROP: 90% do empuxo é proveniente da energia mecânica fornecida pela hélice e os outros 10% do empuxo vem da descarga dos gases. “Prop” é uma abreviatura da palavra inglesa propeler, que significa hélice. Por exemplo, as aeronaves turbo-hélice (Electra, Fokker, etc).\n\nd) TURBOFAN: as mais utilizadas atualmente na aviação comercial, com melhor rendimento e economia de combustível, onde cerca de 80% do empuxo é proveniente da energia mecânica do FAN (“hélice” visível na entrada da turbina) e cerca de 20% do empuxo vem da descarga dos gases.`
                 },
                 {
-                    id: 'map-porcas-2',
-                    title: 'Porcas Autotravantes',
-                    content: `As porcas autotravantes não precisam de meios auxiliares de segurança. Os tipos gerais são o todo em metal e o tipo de trava de fibra. A porca de travamento automático Boots é de uma peça, toda em metal, com uma mola integrante. A porca de parada elástica (Elastic Stop Nut) tem um colar de fibra que é deformado pelo parafuso, criando atrito para travamento. Quase todas as porcas de parada elásticas são de aço ou liga de alumínio.`
+                    id: 'qav-motores-2',
+                    title: 'Funcionamento Básico',
+                    content: `O motor aeronáutico tem como principais componentes o fan, o compressor, o combustor e as turbinas de alta e baixa pressão.\n\nEm linhas gerais, o funcionamento do motor aeronáutico ocorre basicamente como se segue:\n\n• Partida de uma unidade auxiliar pneumática para geração de pressão para acionamento do fan. Quando a rotação do fan atinge a taxa de compressão de 60% da sua capacidade, a unidade auxiliar deixa de atuar. O ar succionado da atmosfera pelo fan é comprimido para o compressor, numa relação de 80% passando externamente ao compressor e 20% do ar induzido comprimido e canalizado para câmara de combustão;\n\n• A expansão dos gases produzidos na câmara de combustão irá rotacionar a turbina de alta e baixa pressão;\n\n• Esse ar aquecido e os gases da combustão produzem a energia mecânica que é transmitida ao eixo da turbina que se encontra acoplada ao compressor;\n\n• A mistura de gases produzidos pela combustão é, então, descarregada para a atmosfera movimentando a aeronave.`
                 }
             ]
         },
         {
-            id: 'map-arruelas-pinos',
-            title: 'ARRUELAS, PINOS E CABOS',
+            id: 'qav-qualidade',
+            title: 'REQUISITOS DE QUALIDADE',
             subTopics: [
                 {
-                    id: 'map-arruelas-1',
-                    title: 'Arruelas',
-                    content: `As arruelas fornecem uma área de superfície de rolamento para as porcas e atuam como calços. Os três tipos mais comuns são a arruela lisa (AN960, AN970), a arruela de pressão (AN935) e a arruela especial. Arruelas de pressão nunca devem ser usadas em estruturas primárias ou secundárias.`
+                    id: 'qav-qualidade-1',
+                    title: 'Visão Geral',
+                    content: `As exigências de qualidade do combustível para uso em turbinas aeronáuticas são:\n• Proporcionar máxima autonomia de voo;\n• Proporcionar queima limpa e completa com mínimo de formação de resíduos;\n• Proporcionar partidas fáceis, seguras e com facilidade de reacendimento;\n• Escoar em baixas temperaturas;\n• Ser estável química e termicamente;\n• Não ser corrosivo aos materiais da turbina;\n• Apresentar mínima tendência a solubilização de água;\n• Ter aspecto límpido indicando ausência de sedimentos;\n• Não apresentar água livre para evitar o desenvolvimento de microrganismos e formação de depósitos que possam obstruir filtros;\n• Ofecer segurança no manuseio e estocagem.`
                 },
                 {
-                    id: 'map-pinos-1',
-                    title: 'Pinos',
-                    content: `Os três principais tipos de pinos usados são: pino de cabeça chata (Clevis), pino cônico e contrapino. São usados em aplicações de cisalhamento e para segurança. Pinos de forquilha (Clevis) são para controles secundários. Contrapinos são para travar parafusos e porcas. Rollpins são pinos tubulares ocos que são inseridos por pressão.`
+                    id: 'qav-qualidade-2',
+                    title: 'Escoamento a Baixa Temperatura',
+                    content: `Essa característica é avaliada pelos ensaios de ponto de congelamento e viscosidade, que têm como objetivo garantir que o combustível seja perfeitamente bombeado e com escoamento contínuo durante o voo em grandes altitudes, onde a temperatura externa alcança valores da ordem de -50 °C, e que seja disperso adequadamente na câmara de combustão.\n\nO ponto de congelamento é a temperatura na qual os cristais de hidrocarbonetos formados pelo resfriamento da amostra desaparecem quando esta é sujeita a reaquecimento, sob agitação constante, enquanto a viscosidade do produto, por sua vez, é a medida da resistência do fluido ao escoamento.`
                 },
                 {
-                    id: 'map-cabos-1',
-                    title: 'Cabos de Comando',
-                    content: `Cabos são os meios mais amplamente utilizados para acionamento das superfícies primárias dos controles de vôo. São fortes, leves e flexíveis. Os mais comuns são os de construção 7x7 (média flexibilidade) e 7x19 (extremamente flexível). Terminais (esfera, garfo, rosqueado) são conectados às pontas.`
+                    id: 'qav-qualidade-3',
+                    title: 'Estabilidade Térmica',
+                    content: `Na aeronave, o querosene de aviação atua tanto como combustível quanto como fluido lubrificante, hidráulico e de arrefecimento.\n\nPelas trocas térmicas realizadas, a temperatura do querosene de aviação pode atingir 150°C, e ao retornar ao tanque de armazenamento pode favorecer a degradação térmica do combustível armazenado, produzindo depósitos que podem afetar o fluxo de combustível, a transferência de calor nos trocadores e a combustão pela obstrução de injetores.\n\nA análise de Estabilidade Térmica simula as condições de pressão e temperatura a que se submete o combustível na aeronave, de forma a garantir a estabilidade térmica do combustível.`
+                },
+                {
+                    id: 'qav-qualidade-4',
+                    title: 'Combustão',
+                    content: `A qualidade de combustão é avaliada pelas propriedades de poder calorífico, massa específica, ponto de fuligem e teor de aromáticos. Estas características estão ligadas aos seguintes requisitos:\n\n• Poder calorífico e massa específica: garantem que o combustível utilizado produza energia necessária para uma determinada autonomia de voo;\n• Ponto de fuligem e teor de aromáticos: permitem a geração de uma chama que não ocasione formação significativa de fuligem e de depósitos, preservando a vida útil da câmara de combustão.`
+                },
+                {
+                    id: 'qav-qualidade-5',
+                    title: 'Corrosividade e Dissolução de Elastômeros',
+                    content: `Essas características devem ser avaliadas no querosene de aviação para evitar que ocorram danos aos metais do sistema de abastecimento de combustível e nos elastômeros empregados na vedação das conexões.\n\nPara esse fim, são utilizadas as análises de corrosividade ao cobre para avaliar a presença de H2S e de enxofre elementar que possam atacar os metais, enquanto a tendência de ataque dos elastômeros é avaliada pelo teor de enxofre mercaptídico.`
+                },
+                {
+                    id: 'qav-qualidade-6',
+                    title: 'Água e Segurança',
+                    content: `ÁGUA: A presença de água no combustível pode acarretar diversos problemas, entre os quais: cristalização a baixas temperaturas, possibilidade de crescimento de microrganismos no armazenamento e formação de H2SO4, que ocasionará corrosão em equipamentos.\n\nSEGURANÇA: Como qualquer combustível líquido considerado como inflamável, práticas básicas de segurança devem ser adotadas para o querosene de aviação, tais como aterrar equipamentos durante bombeio do produto (evitar formação de cargas estáticas), operar em ambiente aerado (evitar concentração de vapores de combustível) e em locais com ausência de fontes de ignição (faíscas, chamas expostas, entre outros).\n\nUma análise de laboratório que especifica o limite de risco de inflamabilidade do combustível (teor de compostos leves) é o ponto de fulgor, que assegura o manuseio e estocagem do produto.`
                 }
             ]
         },
         {
-            id: 'map-rebites-plasticos',
-            title: 'REBITES, PLÁSTICOS E BORRACHAS',
+            id: 'qav-producao',
+            title: 'PRODUÇÃO',
             subTopics: [
                 {
-                    id: 'map-rebites-1',
-                    title: 'Rebites Sólidos',
-                    content: `São identificados pelo material, tipo de cabeça (universal, redonda, chata, escareada), tamanho e têmpera. Os materiais mais comuns são ligas de alumínio (1100, 2117-T, 2017-T, 2024-T, 5056). Os rebites 2017-T e 2024-T (icebox rivets) necessitam de tratamento térmico e refrigeração antes do uso.`
-                },
-                {
-                    id: 'map-rebites-2',
-                    title: 'Rebites Especiais (Cegos)',
-                    content: `Usados em locais onde o acesso a ambos os lados não é possível. Incluem os de auto-cravação (travados por atrito), Pull-Thru e os travados mecanicamente (Cherry-Lock), que oferecem maior resistência à vibração.`
-                },
-                {
-                    id: 'map-plasticos-1',
-                    title: 'Plásticos Transparentes e Reforçados',
-                    content: `Plásticos transparentes (acrílicos) são usados em para-brisas e janelas. Plásticos reforçados (termoendurecidos com fibra de vidro) são usados em radomes, carenagens e acabamentos, devido à sua alta razão resistência-peso.`
-                },
-                {
-                    id: 'map-borracha-1',
-                    title: 'Borracha Natural e Sintética',
-                    content: `Borracha é usada para vedação e absorção de vibração. A borracha natural tem excelentes propriedades físicas, mas baixa resistência a combustíveis. As sintéticas (Nitrila, Neoprene, Butil) são projetadas para resistir a óleos, solventes e temperaturas extremas.`
+                    id: 'qav-producao-1',
+                    title: 'Processo de Refino',
+                    content: `O querosene de aviação é produzido utilizando como processo de refino a destilação atmosférica seguido de tratamento de acabamento (cáustico regenerativo ou hidrotratamento).`
                 }
             ]
         },
         {
-            id: 'map-corrosao',
-            title: 'CONTROLE DA CORROSÃO',
+            id: 'qav-manutencao',
+            title: 'CUIDADOS PARA A MANUTENÇÃO DA QUALIDADE',
             subTopics: [
                 {
-                    id: 'map-corrosao-1',
-                    title: 'Tipos de Corrosão',
-                    content: `A corrosão é a deterioração de um metal por ataque químico ou eletroquímico. As formas comuns incluem: corrosão superficial, filiforme, por pite, de metal diferente (galvânica), de célula de concentração, esfoliação, intergranular, por tensão e por atrito.`
-                },
-                {
-                    id: 'map-corrosao-2',
-                    title: 'Fatores e Prevenção',
-                    content: `Fatores como clima (umidade, sal), tipo de metal e presença de material estranho afetam a corrosão. A manutenção preventiva é crucial e inclui: limpeza adequada, lubrificação periódica, inspeção detalhada, tratamento imediato da corrosão, retoque da pintura e uso de capas protetoras.`
-                },
-                {
-                    id: 'map-corrosao-3',
-                    title: 'Remoção e Tratamento',
-                    content: `A remoção da corrosão envolve a limpeza da área, remoção mecânica dos resíduos (com abrasivos não metálicos em alumínio), neutralização química e restauração da proteção superficial. A corrosão em metais ferrosos (ferrugem) deve ser completamente removida. A corrosão em alumínio e magnésio exige cuidados especiais para não remover material estrutural em excesso. O tratamento químico com ácido crômico ou alodização é frequentemente usado em alumínio.`
+                    id: 'qav-manutencao-1',
+                    title: 'Cuidados no Armazenamento',
+                    content: `Para evitar possível degradação do querosene de aviação durante seu armazenamento devem-se ter os seguintes cuidados:\n\n• Evitar presença de água livre: os tanques devem ser drenados periodicamente para evitar que a presença de água livre favoreça a degradação do combustível por microrganismos;\n\n• Evitar contato do produto com componentes de cobre, zinco e suas ligas: esses metais catalisam a reação de degradação do combustível;\n\n• Adotar rotina de inspeção e limpeza nos sistemas de armazenagem do produto: verificar estado de conservação do interior dos tanques, sucção flutuante, conexões, suspiros e presença de ponto morto onde possa ocorrer acúmulo de água livre.`
                 }
             ]
         },
         {
-            id: 'map-metais',
-            title: 'METAIS: ESTRUTURA, PROPRIEDADES E TRATAMENTOS',
+            id: 'qav-seguranca',
+            title: 'ASPECTOS DE SEGURANÇA, MEIO AMBIENTE E SAÚDE',
             subTopics: [
                 {
-                    id: 'map-metais-1',
-                    title: 'Propriedades dos Metais',
-                    content: `As principais propriedades dos metais para aviação incluem: Dureza, Fragilidade, Maleabilidade, Ductilidade, Elasticidade, Resistência, Densidade, Fusibilidade, Condutividade e Contração/Expansão. A seleção do material busca um equilíbrio ótimo, especialmente na relação resistência-peso.`
-                },
-                {
-                    id: 'map-metais-2',
-                    title: 'Metais Ferrosos (Aços)',
-                    content: `Ligas metálicas que têm o ferro como base. Aços são classificados pelo sistema SAE/AISI de quatro ou cinco dígitos, que indicam os elementos de liga e o teor de carbono. Exemplos incluem aços-carbono, aços-níquel (SAE 2330), aços cromo-molibdênio (SAE 4130), e aços inoxidáveis (série 300, como o 18-8).`
-                },
-                {
-                    id: 'map-metais-3',
-                    title: 'Metais Não Ferrosos',
-                    content: `Incluem Alumínio, Titânio, Cobre e Magnésio e suas ligas. As ligas de alumínio são identificadas por um sistema de quatro dígitos (ex: 1100, 2024, 6061, 7075). O titânio é leve, forte e resistente à corrosão em altas temperaturas. O cobre é usado principalmente por sua condutividade elétrica. O magnésio é o metal estrutural mais leve, mas requer proteção cuidadosa contra corrosão.`
-                },
-                {
-                    id: 'map-metais-4',
-                    title: 'Tratamento Térmico',
-                    content: `É um processo de aquecimento e resfriamento controlado para alterar as propriedades de um metal. Para aços, os processos incluem têmpera (endurecimento), revenimento (alívio de tensões e redução da fragilidade), recozimento (amaciamento) e normalização. Para ligas de alumínio, os principais são o tratamento de solução e o tratamento de precipitação (envelhecimento artificial).`
-                },
-                {
-                    id: 'map-metais-5',
-                    title: 'Testes de Dureza',
-                    content: `São usados para verificar o resultado de um tratamento térmico. Os métodos mais comuns são Brinell (usa uma esfera para criar uma impressão), Rockwell (mede a profundidade da penetração de um cone de diamante ou esfera de aço) e Barcol (um testador portátil para metais macios como alumínio).`
+                    id: 'qav-seguranca-1',
+                    title: 'Manuseio e Transporte',
+                    content: `As recomendações de armazenamento, manuseio e utilização segura estão contidas na correspondente Ficha de Informação de Segurança do Produto Químico (FISPQ).\n\nPara efeito de transporte, a Agência Nacional de Transportes Terrestres (ANTT) classifica o querosene de aviação com número ONU 1863 e classe de risco 3 (líquido inflamável).\n\nSendo considerado como carga perigosa, o seu transporte, carga e descarga devem ser realizados por profissionais devidamente treinados para realizar tais operações.\n\nPara sua manipulação e uso deve-se adotar os seguintes cuidados:\n• Evite inalar névoas, vapores e produtos de combustão;\n• Manipule combustíveis somente em local aberto e ventilado;\n• Evite contato com a pele e com os olhos;\n• Utilize luvas de PVC em atividades que demandam contato das mãos com o produto;\n• Não deixe ao alcance de crianças ou de animais domésticos. Sua ingestão, mesmo em pequenas quantidades, pode ser fatal;\n• Não armazene em residências;\n• Não exponha o produto ao calor, faíscas ou chamas expostas.`
                 }
             ]
         }
@@ -2094,145 +2018,103 @@ h. Impenetrabilidade - significa que dois corpos não podem ocupar o mesmo espa�
   },
   {
     id: 'cap13',
-    title: 'CAPÍTULO 13: AERODINÂMICA E TEORIA DE VOO',
+    title: 'CAPÍTULO 13: COMBUSTÍVEIS E SISTEMAS DE COMBUSTÍVEL',
     topics: [
-        {
-            id: 'atv-intro',
-            title: 'A ATMOSFERA E SUAS PROPRIEDADES',
-            subTopics: [
-                {
-                    id: 'atv-intro-1',
-                    title: 'Composição e Propriedades do Ar',
-                    content: `Uma aeronave opera no ar, portanto, as propriedades do ar que afetam o controle e o desempenho de uma aeronave, devem ser entendidos. O ar é uma mistura de gases composta principalmente de nitrogênio e oxigênio. O ar é considerado um fluido e tem peso. A aerodinâmica estuda a ação do ar sobre um objeto.`
-                },
-                {
-                    id: 'atv-intro-2',
-                    title: 'Pressão Atmosférica',
-                    content: `A pressão atmosférica ao nível do mar é de 14,7 libras por polegada quadrada. Quanto mais alto um objeto estiver em relação ao nível do mar, menor será a pressão. Ela é geralmente medida em polegadas de mercúrio (aproximadamente 29,92 pol. Hg ao nível do mar).`
-                },
-                {
-                    id: 'atv-intro-3',
-                    title: 'Densidade e Umidade',
-                    content: `Densidade é o peso por unidade de volume. A densidade do ar varia em proporção direta com a pressão e inversamente com a temperatura. Ar quente é menos denso que ar frio. Umidade é a quantidade de vapor d'água no ar; o ar úmido é menos denso que o ar seco. Mudanças na densidade afetam a performance da aeronave.`
-                }
-            ]
-        },
-        {
-            id: 'atv-principios',
-            title: 'PRINCÍPIOS FUNDAMENTAIS DO VOO',
-            subTopics: [
-                {
-                    id: 'atv-principios-1',
-                    title: 'Princípio de Bernoulli',
-                    content: `O princípio de Bernoulli estabelece que, quando um fluido (ar) atinge uma restrição, sua velocidade aumenta e sua pressão é reduzida. O lado arqueado de um aerofólio (asa) age como uma restrição, criando uma área de baixa pressão na superfície superior.`
-                },
-                {
-                    id: 'atv-principios-2',
-                    title: 'As Quatro Forças',
-                    content: `Uma aeronave em voo está sob a ação de quatro forças: 1) Gravidade ou Peso (para baixo), 2) Sustentação (para cima), 3) Empuxo (para frente), e 4) Arrasto (para trás). Em voo reto e nivelado, a sustentação iguala o peso e o empuxo iguala o arrasto.`
-                },
-                {
-                    id: 'atv-principios-3',
-                    title: 'Leis do Movimento de Newton',
-                    content: `1ª Lei (Inércia): Um corpo em repouso ou movimento uniforme permanece assim a menos que uma força externa atue sobre ele. 2ª Lei (Força): F = m.a (Força = massa x aceleração). 3ª Lei (Ação e Reação): Para toda ação, existe uma reação igual e contrária. O empuxo é um exemplo desta lei.`
-                }
-            ]
-        },
-        {
-            id: 'atv-aerofolios',
-            title: 'AEROFÓLIOS E GERAÇÃO DE SUSTENTAÇÃO',
-            subTopics: [
-                {
-                    id: 'atv-aerofolios-1',
-                    title: 'Definição e Ângulo de Ataque',
-                    content: `Um aerofólio é uma superfície projetada para obter uma reação desejável do ar (ex: asa, pá de hélice). A linha da corda é uma linha imaginária do bordo de ataque ao bordo de fuga. O ângulo de ataque é o ângulo entre a corda da asa e a direção do vento relativo.`
-                },
-                {
-                    id: 'atv-aerofolios-2',
-                    title: 'Centro de Pressão e Ângulo de Incidência',
-                    content: `O centro de pressão é o ponto de interseção da força resultante com a corda do aerofólio. Ele se move com a mudança no ângulo de ataque. O ângulo de incidência é o ângulo fixo entre a corda da asa e o eixo longitudinal da aeronave.`
-                },
-                {
-                    id: 'atv-aerofolios-3',
-                    title: 'Arrasto',
-                    content: `O arrasto total é a soma de três tipos: 1) Arrasto Parasita: resistência de objetos não produtores de sustentação. 2) Arrasto de Perfil: arrasto parasita do aerofólio. 3) Arrasto Induzido: resultado da produção de sustentação, causado pelos vórtices de ponta de asa.`
-                }
-            ]
-        },
-        {
-            id: 'atv-estabilidade',
-            title: 'ESTABILIDADE E CONTROLE',
-            subTopics: [
-                {
-                    id: 'atv-estabilidade-1',
-                    title: 'Eixos da Aeronave',
-                    content: `Uma aeronave gira em torno de três eixos: 1) Longitudinal (do nariz à cauda), movimento de rolamento (roll). 2) Lateral (de ponta a ponta da asa), movimento de arfagem (pitch). 3) Vertical (de cima para baixo), movimento de guinada (yaw).`
-                },
-                {
-                    id: 'atv-estabilidade-2',
-                    title: 'Estabilidade Estática e Dinâmica',
-                    content: `Estabilidade é a característica de uma aeronave que a faz retornar ao voo reto e nivelado. Estabilidade estática é a tendência inicial de retornar ao equilíbrio. Estabilidade dinâmica descreve como a aeronave se comporta ao longo do tempo após uma perturbação.`
-                },
-                {
-                    id: 'atv-estabilidade-3',
-                    title: 'Tipos de Estabilidade',
-                    content: `Estabilidade Longitudinal (arfagem) é controlada pelo estabilizador horizontal. Estabilidade Direcional (guinada) é controlada pelo estabilizador vertical. Estabilidade Lateral (rolamento) é afetada pelo diedro (ângulo das asas para cima) e enflechamento (ângulo das asas para trás).`
-                }
-            ]
-        },
-        {
-            id: 'atv-superficies',
-            title: 'SUPERFÍCIES DE CONTROLE',
-            subTopics: [
-                {
-                    id: 'atv-superficies-1',
-                    title: 'Grupo Primário e Secundário',
-                    content: `GRUPO PRIMÁRIO: Ailerons (controlam o rolamento), Profundores (controlam a arfagem) e Leme (controla a guinada).\n\nGRUPO SECUNDÁRIO: Compensadores (ajustam as forças de controle para aliviar a pressão nos comandos) e servo-compensadores (ajudam na movimentação das superfícies primárias).`
-                },
-                {
-                    id: 'atv-superficies-2',
-                    title: 'Grupo Auxiliar (Hipersustentadores)',
-                    content: `Dispositivos que aumentam a sustentação em baixas velocidades. Incluem: Flaps (no bordo de fuga), Slats e Slots (no bordo de ataque). Spoilers são placas na superfície superior da asa que diminuem a sustentação e aumentam o arrasto.`
-                }
-            ]
-        },
-        {
-            id: 'atv-alta-velocidade',
-            title: 'AERODINÂMICA DE ALTA VELOCIDADE',
-            subTopics: [
-                {
-                    id: 'atv-alta-velocidade-1',
-                    title: 'Fluxo Compressível e Número de Mach',
-                    content: `A velocidade do som varia com a temperatura. Em altas velocidades, o ar se torna compressível. O Número de Mach é a razão entre a velocidade da aeronave e a velocidade local do som. Mach < 0.75 é subsônico; 0.75 a 1.20 é transônico; 1.20 a 5.00 é supersônico.`
-                },
-                {
-                    id: 'atv-alta-velocidade-2',
-                    title: 'Ondas de Choque',
-                    content: `Quando o fluxo de ar sobre uma parte da asa atinge a velocidade sônica, uma onda de choque se forma. Essa onda causa um aumento súbito de pressão e densidade, uma queda na velocidade do fluxo para subsônica, e um aumento significativo do arrasto.`
-                }
-            ]
-        },
-        {
-            id: 'atv-helicopteros',
-            title: 'AERODINÂMICA DE HELICÓPTEROS',
-            subTopics: [
-                {
-                    id: 'atv-helicopteros-1',
-                    title: 'Forças e Torque',
-                    content: `A sustentação é gerada por um aerofólio rotativo (rotor). A 3ª Lei de Newton cria uma reação de torque que tende a girar a fuselagem na direção oposta à do rotor principal. Um rotor de cauda (rotor antitorque) compensa esse efeito.`
-                },
-                {
-                    id: 'atv-helicopteros-2',
-                    title: 'Precessão Giroscópica e Assimetria de Sustentação',
-                    content: `PRECESSÃO GIROSCÓPICA: Uma força aplicada a um disco em rotação tem seu efeito 90 graus depois, na direção da rotação. Os comandos do cíclico são aplicados levando isso em conta.\n\nASSIMETRIA DE SUSTENTAÇÃO: Em voo para frente, a pá que avança tem uma velocidade relativa maior que a pá que recua, gerando mais sustentação. Isso é compensado pelo batimento das pás (flapping).`
-                },
-                {
-                    id: 'atv-helicopteros-3',
-                    title: 'Efeito Solo e Auto-rotação',
-                    content: `EFEITO SOLO: Próximo ao solo (até cerca de um diâmetro de rotor), o ar descendente forma um "colchão" que aumenta a sustentação e reduz a potência necessária para o voo pairado.\n\nAUTO-ROTAÇÃO: Em caso de falha de motor, o fluxo de ar ascendente através do disco do rotor mantém as pás girando, permitindo um pouso controlado.`
-                }
-            ]
-        }
+      {
+        id: 'csc-intro',
+        title: 'INTRODUÇÃO AOS COMBUSTÍVEIS',
+        subTopics: [
+          {
+            id: 'csc-intro-1',
+            title: 'Definição e Tipos (Sólidos, Gasosos, Líquidos)',
+            content: `O combustível é uma substância que, quando combinado com o oxigênio, queima e produz calor. Os combustíveis devem ser classificados de acordo com seu estado físico, como: sólidos, gasosos ou líquidos.\n\nCombustíveis sólidos são extensivamente usados para motores de combustão externa; como os motores à vapor, onde a queima toma lugar sob as caldeiras ou em fornos. Eles incluem tais combustíveis, como madeira e carvão. Os combustíveis sólidos não são usados em motores convencionais (recíprocos) onde a combustão se processa no interior dos cilindros por causa de sua baixa razão de queima, baixo valor calorífico e numerosas outras desvantagens.\n\nCombustíveis gasosos são usados, até certo ponto, para motores de combustão interna, onde um grande suprimento de combustível está prontamente disponível. Gás natural e gás liqüefeito de petróleo, são dois dos tipos mais comuns. Os combustíveis gasosos poderão ser desconsiderados, para o uso, em motores de aviões. O grande espaço, ocupado por eles, restringe o suprimento de combustível que pode transportar.\n\nOs combustíveis líquidos, em muitos aspectos, são os combustíveis ideais para o uso em motores de combustão interna. O combustível de aviação é um líquido contendo energia química; que, através da combustão, é desprendida como energia térmica e, então, convertida em energia mecânica pelo motor. A energia mecânica é usada para produzir o empuxo que movimenta o avião. Gasolina e querosene são os dois combustíveis mais amplamente usados na aviação.`
+          },
+        ]
+      },
+      {
+        id: 'csc-gasolina',
+        title: 'CARACTERÍSTICAS E PROPRIEDADES DA GASOLINA DE AVIAÇÃO',
+        subTopics: [
+          {
+            id: 'csc-gasolina-1',
+            title: 'Composição, Volatilidade e Riscos',
+            content: `A gasolina de aviação consiste quase que, inteiramente, de hidrocarbonos. O chumbo tetraetil (TEL) é adicionado para melhorar sua performance. A volatilidade é a medida da tendência de uma substância em vaporizar-se. Se a gasolina vaporizar muito rapidamente, as linhas de combustível poderão ficar cheias de vapor, causando um "calço de vapor". A vaporização também causa um resfriamento que pode levar à formação de gelo no carburador.`
+          },
+          {
+            id: 'csc-gasolina-2',
+            title: 'Detonação, Pré-Ignição e Octanagem',
+            content: `Detonação é a queima instantânea e explosiva da última porção da mistura ar/combustível na câmara de combustão. Pré-ignição (ou ignição de superfície) é a ignição da mistura por pontos quentes antes do ponto de ignição normal pela vela. O número de octanas designa o valor anti-detonante do combustível. Gasolinas de aviação possuem dois graus (ex: 100/130), o primeiro para mistura pobre e o segundo para mistura rica.`
+          },
+          {
+            id: 'csc-gasolina-3',
+            title: 'Identificação e Pureza',
+            content: `As gasolinas contendo TEL são coloridas para identificação (ex: 100/130 é verde, 91/96 é azul). O combustível deve estar livre de impurezas como água e sedimentos. A contaminação por água pode ser evitada reabastecendo a aeronave logo após o voo para reduzir o espaço de ar nos tanques. Marcas de identificação incluem faixas coloridas nas tubulações e placas nos pontos de abastecimento.`
+          },
+        ]
+      },
+      {
+        id: 'csc-turbina',
+        title: 'COMBUSTÍVEIS PARA MOTORES A TURBINA',
+        subTopics: [
+            {
+                id: 'csc-turbina-1',
+                title: 'Tipos e Características',
+                content: `São combustíveis destilados, compostos de hidrocarbonos com um pouco mais de carbono e enxofre que a gasolina. Os tipos comuns são Jet-A (querosene pesado), Jet-B (mistura de gasolina e querosene) e Jet-A-1 (para operação em temperaturas extremamente baixas). A volatilidade é um compromisso entre partida a frio e perdas por evaporação. Pelo fato de não serem coloridos, sua identificação visual não é confiável.`
+            }
+        ]
+      },
+      {
+        id: 'csc-contaminacao',
+        title: 'CONTAMINAÇÃO DO SISTEMA DE COMBUSTÍVEL',
+        subTopics: [
+            {
+                id: 'csc-contaminacao-1',
+                title: 'Água, Sedimentos e Partículas Estranhas',
+                content: `A água pode estar dissolvida ou entranhada (em suspensão), formando nuvens ou gotículas que podem congelar. Sedimentos são poeira, material fibroso, grãos, flocos ou ferrugem. Partículas estranhas incluem ferrugem, areia, compostos de alumínio, latão e borracha. Partículas grosseiras (>40 microns) são visíveis, enquanto as finas não.`
+            },
+            {
+                id: 'csc-contaminacao-2',
+                title: 'Desenvolvimento Microbial e Detecção',
+                content: `O desenvolvimento microbial (fungo) ocorre na interface entre a água e o combustível, podendo formar uma camada marrom que acelera a corrosão eletrolítica. A detecção visual de contaminação busca por um combustível "limpo e brilhante", sem água livre perceptível. Métodos de teste em pista podem usar corantes solúveis em água ou pós químicos que mudam de cor.`
+            },
+            {
+                id: 'csc-contaminacao-3',
+                title: 'Controle e Prevenção',
+                content: `O controle da contaminação começa na refinaria e se estende por todo o processo de transporte e armazenamento. Procedimentos chave incluem: usar filtro-separador, permitir tempo de assentamento (uma hora por pé de profundidade), checar a presença de água com papel de tornassol, usar linhas de sucção flutuantes e garantir a limpeza dos veículos abastecedores.`
+            }
+        ]
+      },
+      {
+        id: 'csc-sistemas',
+        title: 'SISTEMAS DE COMBUSTÍVEL DE AERONAVES',
+        subTopics: [
+            {
+                id: 'csc-sistemas-1',
+                title: 'Componentes e Tipos de Alimentação',
+                content: `Um sistema de combustível armazena e distribui combustível limpo a uma pressão correta para o motor. Os componentes básicos incluem tanques, linhas, válvulas, bombas e filtros. O sistema de alimentação por gravidade é usado em aviões de baixa potência. Aeronaves de alta potência requerem um sistema de pressão com bombas acionadas pelo motor e bombas auxiliares (recalque).`
+            },
+            {
+                id: 'csc-sistemas-2',
+                title: 'Tanques e Células de Combustível',
+                content: `Os tanques podem ser feitos de liga de alumínio ou ser células de borracha. Tanques integrais ("asa molhada") são parte da estrutura da aeronave. Todos os tanques possuem suspiros para manter a pressão atmosférica, defletores para reduzir a flutuação do combustível, e um espaço para expansão térmica. Alguns possuem válvulas de alijamento para reduzir o peso da aeronave em voo.`
+            },
+            {
+                id: 'csc-sistemas-3',
+                title: 'Filtros e Bombas',
+                content: `Filtros são instalados nas saídas dos tanques, nos bocais de abastecimento e na entrada do carburador. Bombas de recalque (centrífugas) são usadas para fornecer pressão positiva à bomba principal e para transferir combustível. A bomba principal, acionada pelo motor, é geralmente do tipo aleta (deslocamento positivo) e inclui uma válvula de alívio e uma de derivação (by-pass).`
+            },
+            {
+                id: 'csc-sistemas-4',
+                title: 'Válvulas e Indicadores',
+                content: `Válvulas seletoras permitem cortar o fluxo, selecionar o tanque ou realizar alimentação cruzada. Podem ser operadas manual ou eletricamente. Indicadores de quantidade podem ser do tipo visor de vidro, mecânico (bóia), elétrico ou eletrônico (capacitivo). Este último é o mais preciso, pois mede o combustível em peso. Medidores de fluxo e pressão também são essenciais.`
+            },
+            {
+                id: 'csc-sistemas-5',
+                title: 'Sistemas Multimotores, Reparos e Segurança',
+                content: `Sistemas para aeronaves multimotoras permitem que qualquer motor seja alimentado por diferentes tanques (alimentação cruzada). Reparos em tanques de combustível exigem que eles sejam drenados e neutralizados para evitar risco de fogo. Vazamentos são classificados de acordo com a área umedecida em 30 minutos (infiltração lenta, infiltração, infiltração pesada ou vazamento corrido). É crucial seguir todas as precauções de segurança contra fogo ao manusear combustíveis de turbina, que, sob certas circunstâncias, são tão perigosos quanto a gasolina.`
+            }
+        ]
+      }
     ]
   },
   {
@@ -2376,6 +2258,159 @@ h. Impenetrabilidade - significa que dois corpos não podem ocupar o mesmo espa�
             id: 'it-vocab-6',
             title: 'Componentes de Motores e Sistemas',
             content: `Main components of reciprocating engines: componentes principais dos motores de movimento alternado\nCylinder: cilindro\nPiston assembly: conjunto do pistão\nConnecting rod: haste de ligação\nCrankshaft: eixo de manivela\nFuel system units: unidades do sistema de combustível\nTanks: reservatório\nBooster pumps: bombas auxiliares\nIgnition system: sistema de ignição\nMagnet: ímã\nSpark plugs: velas de ignição`
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'cap15',
+    title: 'CAPÍTULO 15: MATERIAIS DE AVIAÇÃO E PROCESSOS',
+    topics: [
+      {
+        id: 'map-prendedores',
+        title: 'Prendedores Rosqueados e Identificação',
+        subTopics: [
+          {
+            id: 'map-prendedores-1',
+            title: 'Introdução e Tipos de Prendedores',
+            content: `Este título incorpora as diversas partes utilizadas na fabricação e no reparo de aeronaves, como os vários tipos de prendedores e uma miscelânea de pequenos itens e os tratamentos a que estão sujeitos durante sua fabricação ou utilização. A importância do material de aviação é muitas vezes desprezada devido ao seu pequeno tamanho; entretanto, a segurança e a eficiência da operação de uma aeronave depende de uma correta seleção e, uso adequado do material de aviação, assim como o conhecimento e a utilização dos processos adequados a esse material.\n\nOs vários tipos de dispositivos de fixação, ou de fechamento, permitem uma rápida desmontagem e recolocação de partes de aeronaves, que devem ser separadas e conectadas em intervalos frequentes. Entende-se por parafusos, dispositivos de fixação, que permitem segurança e rigidez na união de peças. Existem dois tipos de parafusos: os utilizados em mecânica (bolts), geralmente quando se necessita grande firmeza; e os de rosca soberba (screws), quando a firmeza não é um fator importante.`
+          },
+          {
+            id: 'map-prendedores-2',
+            title: 'Classificação dos Fios de Rosca',
+            content: `Para os parafusos para aeronaves (bolts); ou os de rosca soberba (screws); e porcas, são fabricados em um dos seguintes tipos de fios de rosca: NC (American National Coarse), NF (American National Fine), UNC (American Standard Unified Coarse) ou UNF (American Standard Unified Fine). As roscas são também especificadas em classes de acabamento, que indicam a tolerância permitida pelo fabricante, com referência a sua instalação nos furos do material a ser preso ou fixado. As classes são: Classe 1 - "Loose fit", Classe 2 - "Free fit", Classe 3 - "Medium fit", e Classe 4 - "Close fit".`
+          },
+          {
+            id: 'map-prendedores-3',
+            title: 'Identificação dos Materiais de Aviação',
+            content: `A maioria dos itens são identificados por números de especificação ou nome do fabricante. Peças com fios de rosca e rebites são usualmente identificados pelas letras AN (Air Force - Navy), NAS (National Aircraft Standard), ou MS (Military Standard) seguidas de números. Os prendedores de desconexão rápida são usualmente identificados por nomes dados pelo fabricante e pela designação dos tamanhos.`
+          }
+        ]
+      },
+      {
+        id: 'map-parafusos-gerais',
+        title: 'Parafusos de Aviação',
+        subTopics: [
+          {
+            id: 'map-parafusos-1',
+            title: 'Parafusos de Uso Geral',
+            content: `O parafuso de aeronave de cabeça sextavada (AN-3 a AN-20) é um parafuso estrutural multiuso usado para aplicações gerais envolvendo cargas de tensão ou cisalhamento. Parafusos de liga de aço menores que o nº 10-32 e parafusos de liga de alumínio menores que 1⁄4 polegada de diâmetro não são usados em estruturas primárias. O parafuso de cabeça perfurada AN-73 é como o parafuso sextavado padrão, mas tem uma cabeça mais profunda, que é perfurada para receber o fio para segurança.`
+          },
+          {
+            id: 'map-parafusos-2',
+            title: 'Parafusos de Tolerância Fechada e de Fixação Interna',
+            content: `Os parafusos de tolerância estreita são usinados com mais precisão do que o parafuso de uso geral. Podem ser sextavados (AN-173 a AN-186) ou ter uma cabeça escareada de 100° (NAS-80 a NAS-86). São usados em aplicações onde é necessário um ajuste apertado.\n\nOs parafusos de chave interna (MS-20004 a MS-20024 ou NAS-495) são fabricados em aço de alta resistência e são adequados para uso em aplicações de tensão e cisalhamento.`
+          },
+          {
+            id: 'map-parafusos-3',
+            title: 'Identificação e Codificação de Parafusos',
+            content: `Os parafusos de aeronaves do tipo AN podem ser identificados pelas marcações de código nas cabeças. As marcações geralmente denotam o fabricante, o material e se é um tipo AN padrão ou especial. Parafusos de aço padrão AN são marcados com um traço elevado ou asterisco. Parafusos de liga de alumínio AN são marcados com dois traços elevados. Parafusos NAS de tolerância estreita são marcados com um triângulo elevado ou rebaixado.`
+          }
+        ]
+      },
+      {
+        id: 'map-parafusos-especiais',
+        title: 'Parafusos Especiais e de Bloqueio',
+        subTopics: [
+          {
+            id: 'map-especiais-1',
+            title: 'Parafusos de Forquilha (Clevis) e Olhal',
+            content: `A cabeça de um parafuso de manilha (Clevis) é redonda e ranhurada. Este tipo de parafuso é usado somente onde ocorrem cargas de cisalhamento e nunca em tensão.\n\nO olhal é um parafuso para fins especiais usados onde cargas de tensão externas devem ser aplicadas. É projetado para a fixação de dispositivos, como o garfo de um esticador.`
+          },
+          {
+            id: 'map-especiais-2',
+            title: 'Jo-Parafuso (Jo-bolt)',
+            content: `Jo-bolt é um nome comercial para um rebite de três peças com rosca interna, consistindo em um parafuso de liga de aço, uma porca de aço e uma luva de aço inoxidável expansível. Tem alta resistência ao cisalhamento e à tração, sendo adequado para uso em casos de altas tensões. São usados em áreas que não são frequentemente submetidas a substituição ou manutenção.`
+          },
+          {
+            id: 'map-especiais-3',
+            title: 'Parafusos de Bloqueio (Lockbolts)',
+            content: `Combinam as características de um parafuso e rebite de alta resistência. São usados em conexões de emenda de asa, trem de pouso, longarinas, etc. São instalados mais rapidamente que rebites ou parafusos convencionais e eliminam o uso de arruelas de pressão e contrapinos. Três tipos são comumente usados: o tipo de tração (pull type), o tipo de toco (stump type) e o tipo cego (blind type).`
+          }
+        ]
+      },
+      {
+        id: 'map-porcas',
+        title: 'Porcas e Arruelas',
+        subTopics: [
+          {
+            id: 'map-porcas-1',
+            title: 'Porcas Não Autotravantes',
+            content: `São porcas que devem ser protegidas por dispositivos de travamento externos, como contrapinos ou fio de segurança. Incluem a porca castelo (AN310), a porca de cisalhamento acastelada (AN320), a porca sextavada simples (AN315) e a porca borboleta (AN350).`
+          },
+          {
+            id: 'map-porcas-2',
+            title: 'Porcas Autotravantes e de Mola',
+            content: `As porcas autotravantes não precisam de meios auxiliares de segurança. Os tipos gerais são o todo em metal (ex: Boots) e o tipo de trava de fibra (ex: Elastic Stop Nut). Porcas de mola de chapa são usadas com parafusos auto-roscantes em locais não estruturais.`
+          },
+          {
+            id: 'map-arruelas-1',
+            title: 'Arruelas de Aviação',
+            content: `As arruelas fornecem uma área de superfície de rolamento e atuam como calços. Os três tipos mais comuns são a arruela lisa (plain washer), a arruela de pressão (lock washer) e a arruela especial. Arruelas lisas (AN960, AN970) são usadas sob porcas para fornecer uma superfície de apoio. Arruelas de pressão (AN935) nunca devem ser usadas em estruturas primárias ou secundárias.`
+          }
+        ]
+      },
+      {
+        id: 'map-materiais-diversos',
+        title: 'Outros Materiais e Vedações',
+        subTopics: [
+          {
+            id: 'map-plasticos-1',
+            title: 'Plásticos e Borrachas',
+            content: `PLÁSTICOS: Usados em muitas aplicações, desde componentes estruturais reforçados (thermosettings) até acabamentos (thermoplastics). Plásticos transparentes (acrílicos) são usados em para-brisas e janelas.\n\nBORRACHA: Usada como elastômero para proteger contra vibrações, regular temperatura e pressão, e resistir a químicos. A borracha natural é flexível, mas a sintética (Nitrila, Neoprene) oferece maior resistência a combustíveis e óleos.`
+          },
+          {
+            id: 'map-vedadores-1',
+            title: 'Selos e Vedações de Aeronaves',
+            content: `São usados para evitar a passagem de fluidos ou contaminantes. São divididos em três classes: gaxetas (packings), juntas (gaskets) e limpadores (wipers). Gaxetas, como os O-Rings (anéis de vedação), são para vedações dinâmicas. Juntas são para vedações estáticas entre superfícies planas.`
+          }
+        ]
+      },
+      {
+        id: 'map-corrosao',
+        title: 'Controle de Corrosão',
+        subTopics: [
+          {
+            id: 'map-corrosao-1',
+            title: 'Tipos de Corrosão',
+            content: `A corrosão é a deterioração de um metal por ataque químico ou eletroquímico. As formas incluem: ataque químico direto, corrosão superficial, filiforme, por pite, de metal diferente (galvânica), de célula de concentração, esfoliação, intergranular, por tensão e por atrito.`
+          },
+          {
+            id: 'map-corrosao-2',
+            title: 'Agentes Corrosivos e Manutenção Preventiva',
+            content: `Os agentes corrosivos mais comuns são ácidos, álcalis e sais, além da própria atmosfera e água. A manutenção preventiva é crucial e inclui: limpeza adequada, lubrificação periódica, inspeção detalhada, tratamento imediato da corrosão, retoque da pintura e uso de capas protetoras.`
+          },
+          {
+            id: 'map-corrosao-3',
+            title: 'Remoção e Tratamento da Corrosão',
+            content: `O tratamento completo da corrosão envolve limpeza da área, remoção dos produtos de corrosão, neutralização dos resíduos, e restauração dos revestimentos de proteção. Métodos mecânicos (lixamento) e químicos são usados. O tratamento varia para cada tipo de metal (aços, alumínio, magnésio, titânio).`
+          }
+        ]
+      },
+      {
+        id: 'map-metais-processos',
+        title: 'Metais, Tratamentos e Testes',
+        subTopics: [
+          {
+            id: 'map-metais-1',
+            title: 'Estrutura e Propriedades dos Metais',
+            content: `Propriedades como dureza, maleabilidade, ductilidade e elasticidade são vitais. A seleção de metais para reparo considera a relação resistência-peso, confiabilidade e os cinco esforços básicos: tração, compressão, cisalhamento, flexão e torção.`
+          },
+          {
+            id: 'map-metais-2',
+            title: 'Princípios do Tratamento Térmico',
+            content: `O tratamento térmico é uma série de operações envolvendo o aquecimento e o resfriamento de metais no estado sólido para mudar suas propriedades mecânicas. Os processos variam para metais ferrosos e não ferrosos, e incluem têmpera, revenimento, recozimento e normalização.`
+          },
+          {
+            id: 'map-metais-3',
+            title: 'Processos de Tratamento Térmico para Aços e Ligas de Alumínio',
+            content: `Para aços, o endurecimento (têmpera) envolve aquecimento acima do ponto crítico e resfriamento rápido. O revenimento reduz a fragilidade. O recozimento amacia o metal. A cementação (case hardening) cria uma superfície dura sobre um núcleo macio.\n\nPara ligas de alumínio, os processos são tratamento de solução a quente e tratamento de precipitação a quente (envelhecimento artificial), que aumentam significativamente a resistência.`
+          },
+          {
+            id: 'map-metais-4',
+            title: 'Testes de Dureza',
+            content: `São usados para verificar a condição de dureza do metal e o resultado de um tratamento térmico. Os métodos mais conhecidos são Brinell (mede o diâmetro de uma impressão deixada por uma esfera), Rockwell (mede a profundidade da penetração de um penetrador) e Barcol (um medidor portátil para metais macios como alumínio).`
           }
         ]
       }
