@@ -1,11 +1,10 @@
 /// <reference types="vite/client" />
 
-// FIX: Explicitly define the types for import.meta.env to provide type-safety
-// for environment variables and resolve TypeScript errors throughout the project.
-interface ImportMetaEnv {
-  readonly VITE_API_KEY: string;
-}
-
-interface ImportMeta {
-  readonly env: ImportMetaEnv;
-}
+// The project uses `process.env.API_KEY` via a Vite `define` config in `vite.config.ts`.
+// To make TypeScript aware of this in the client-side code, we must declare it.
+// This corrects the previous typings which were for `import.meta.env`.
+declare var process: {
+  env: {
+    API_KEY: string;
+  }
+};
