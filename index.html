@@ -8,11 +8,36 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Exo+2:wght@400;600;700&display=swap');
+      html {
+        scroll-behavior: smooth;
+      }
       body {
         font-family: 'Exo 2', sans-serif;
       }
       .font-technical {
         font-family: 'Roboto Mono', monospace;
+      }
+      /* Animation for elements scrolling into view */
+      .scroll-animate {
+          opacity: 0;
+          transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      }
+
+      .scroll-animate.fade-in-up {
+          transform: translateY(30px);
+      }
+
+      .scroll-animate.slide-in-left {
+          transform: translateX(-50px);
+      }
+      
+      .scroll-animate.slide-in-right {
+          transform: translateX(50px);
+      }
+
+      .scroll-animate.is-visible {
+          opacity: 1;
+          transform: translate(0, 0);
       }
     </style>
 <script type="importmap">

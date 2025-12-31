@@ -1,13 +1,24 @@
-
 import React, { useState } from 'react';
 import Header from './components/Header';
 import Dashboard from './components/Dashboard';
 import QuizView from './components/QuizView';
+import LandingPage from './components/LandingPage';
 import { View } from './types';
 
+type AppState = 'landing' | 'main';
+
 const App: React.FC = () => {
+  const [appState, setAppState] = useState<AppState>('landing');
   const [currentView, setCurrentView] = useState<View>(View.Dashboard);
   const [currentChapterIndex, setCurrentChapterIndex] = useState(0);
+
+  const enterMainApp = () => {
+    setAppState('main');
+  };
+
+  if (appState === 'landing') {
+    return <LandingPage onStart={enterMainApp} />;
+  }
 
   return (
     <div className="min-h-screen bg-[#0D1117] text-gray-200 flex flex-col">
