@@ -1,13 +1,9 @@
 // services/firebase.ts
-// FIX: Using Firebase v8 compat libraries to resolve module import error. The error "Module has no exported member 'initializeApp'" suggests a Firebase version mismatch.
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 
-
-// Configuração do seu aplicativo web Firebase
 const firebaseConfig = {
-  // FIX: Using environment variable for API Key as required by guidelines.
   apiKey: process.env.API_KEY,
   authDomain: "aerostudy-app.firebaseapp.com",
   projectId: "aerostudy-app",
@@ -17,13 +13,27 @@ const firebaseConfig = {
   measurementId: "G-8E5Z8F979E"
 };
 
-// Inicializa o Firebase
-// FIX: Added a check to prevent re-initializing the app, which can cause errors.
-if (!firebase.apps.length) {
-    firebase.initializeApp(firebaseConfig);
+let auth: firebase.auth.Auth | null = null;
+let db: firebase.firestore.Firestore | null = null;
+let googleProvider: firebase.auth.GoogleAuthProvider | null = null;
+let isFirebaseConfigured = false;
+
+// Só inicializa o Firebase se a API_KEY estiver definida.
+if (firebaseConfig.apiKey) {
+  try {
+    if (!firebase.apps.length) {
+      firebase.initializeApp(firebaseConfig);
+    }
+    auth = firebase.auth();
+    db = firebase.firestore();
+    googleProvider = new firebase.auth.GoogleAuthProvider();
+    isFirebaseConfigured = true;
+  } catch (error) {
+    console.error("Erro ao inicializar o Firebase:", error);
+    isFirebaseConfigured = false;
+  }
+} else {
+  console.warn("Chave de API do Firebase não encontrada. O aplicativo funcionará em modo offline/limitado.");
 }
 
-// Exporta os serviços que vamos usar no aplicativo
-export const auth = firebase.auth();
-export const db = firebase.firestore();
-export const googleProvider = new firebase.auth.GoogleAuthProvider();
+export { auth, db, googleProvider, isFirebaseConfigured };

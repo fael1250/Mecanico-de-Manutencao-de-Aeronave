@@ -1,8 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
-// FIX: Updated Firebase imports to align with v8 compat API.
 import { User } from 'firebase/auth';
-import { auth, googleProvider } from './services/firebase';
+import { auth, googleProvider, isFirebaseConfigured } from './services/firebase';
 
 import Header from './components/Header';
 import Dashboard from './components/Dashboard';
@@ -12,6 +11,31 @@ import { View } from './types';
 
 type AppState = 'landing' | 'main';
 
+const FirebaseConfigError: React.FC = () => (
+    <div className="min-h-screen bg-[#0D1117] flex items-center justify-center p-4">
+        <div className="max-w-3xl w-full text-center bg-[#161B22] p-8 rounded-lg border-2 border-red-500/50 shadow-2xl shadow-red-500/20">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 mx-auto text-red-400 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+           <h1 className="text-2xl font-bold text-red-400 mb-4">Erro de Configuração do Firebase</h1>
+           <p className="text-gray-300 font-technical text-left mb-6">
+             A Chave de API (API_KEY) do Firebase não foi encontrada. O aplicativo não pode ser iniciado porque depende dos serviços do Firebase para autenticação e salvamento de progresso.
+           </p>
+           <div className="text-left font-technical text-sm text-gray-400 bg-[#0D1117] p-4 rounded-md border border-[#30363D]">
+             <p className="font-bold text-white mb-2">COMO RESOLVER (em produção - Vercel):</p>
+             <ol className="list-decimal list-inside space-y-2">
+               <li>Acesse o painel do seu projeto no <a href="https://vercel.com" target="_blank" rel="noopener noreferrer" className="text-cyan-400 underline hover:text-cyan-300">Vercel</a>.</li>
+               <li>Vá para a aba <strong className="text-white">Settings</strong> e depois para <strong className="text-white">Environment Variables</strong> no menu lateral.</li>
+               <li>Adicione uma nova variável de ambiente.</li>
+               <li>No campo "Name", digite <code className="bg-gray-700 px-1.5 py-0.5 rounded text-cyan-300">API_KEY</code>.</li>
+               <li>No campo "Value", cole o valor da sua chave de API do Firebase.</li>
+               <li>Salve e, em seguida, vá para a aba <strong className="text-white">Deployments</strong> e faça um "Redeploy" da sua última versão para que as alterações tenham efeito.</li>
+             </ol>
+           </div>
+        </div>
+    </div>
+);
+
 const App: React.FC = () => {
   const [appState, setAppState] = useState<AppState>('landing');
   const [currentView, setCurrentView] = useState<View>(View.Dashboard);
@@ -20,17 +44,20 @@ const App: React.FC = () => {
   const [isLoadingAuth, setIsLoadingAuth] = useState(true);
 
   useEffect(() => {
-    // FIX: Changed to v8 compat API style for onAuthStateChanged.
-    const unsubscribe = auth.onAuthStateChanged((currentUser) => {
-      setUser(currentUser);
-      setIsLoadingAuth(false);
-    });
-    return () => unsubscribe();
+    if (auth) {
+        const unsubscribe = auth.onAuthStateChanged((currentUser) => {
+            setUser(currentUser);
+            setIsLoadingAuth(false);
+        });
+        return () => unsubscribe();
+    } else {
+        setIsLoadingAuth(false);
+    }
   }, []);
 
   const handleLogin = async () => {
+    if (!auth || !googleProvider) return;
     try {
-      // FIX: Changed to v8 compat API style for signInWithPopup.
       await auth.signInWithPopup(googleProvider);
     } catch (error: any) {
       console.error("Erro ao fazer login com Google:", error);
@@ -55,8 +82,8 @@ const App: React.FC = () => {
   };
 
   const handleLogout = async () => {
+    if (!auth) return;
     try {
-      // FIX: Changed to v8 compat API style for signOut.
       await auth.signOut();
     } catch (error) {
       console.error("Erro ao fazer logout:", error);
@@ -70,6 +97,10 @@ const App: React.FC = () => {
   const goToLanding = () => {
     setAppState('landing');
   };
+
+  if (!isFirebaseConfigured) {
+    return <FirebaseConfigError />;
+  }
 
   if (isLoadingAuth) {
     return (
