@@ -481,5 +481,39 @@ export const localQuestionsDB: LocalQuestion[] = [
     correctAnswerIndex: 1,
     difficulty: QuizDifficulty.Facil,
     explanation: "Leak/Leaking refere-se a vazamentos de fluidos."
+  },
+  
+  // CAPÍTULO 15: MATERIAIS DE AVIAÇÃO E PROCESSOS (4 questões)
+  {
+    chapterId: 'cap15',
+    question: "Qual é a principal finalidade de um contrapino (cotter pin) em um parafuso com porca castelo?",
+    options: ["Aumentar o torque de aperto.", "Atuar como arruela de pressão.", "Impedir que a porca se solte por vibração.", "Proteger a rosca do parafuso."],
+    correctAnswerIndex: 2,
+    difficulty: QuizDifficulty.Facil,
+    explanation: "O contrapino é um dispositivo de segurança que passa através do furo no parafuso e das ranhuras da porca castelo, travando-a mecanicamente para que ela não gire e se solte."
+  },
+  {
+    chapterId: 'cap15',
+    question: "Uma diferença fundamental entre um parafuso padrão AN e um parafuso NAS é que o parafuso NAS geralmente possui:",
+    options: ["Uma cabeça maior para mais torque.", "Tolerâncias de fabricação mais estreitas (ajuste apertado).", "Material de menor resistência.", "Apenas rosca do tipo grossa (NC)."],
+    correctAnswerIndex: 1,
+    difficulty: QuizDifficulty.Medio,
+    explanation: "Parafusos NAS são fabricados com tolerâncias mais rigorosas (close tolerance), garantindo um ajuste mais preciso no furo, ideal para aplicações estruturais críticas que exigem transferência de cisalhamento sem folgas."
+  },
+  {
+    chapterId: 'cap15',
+    question: "A corrosão galvânica (de metal diferente) ocorre quando:",
+    options: ["Dois metais idênticos estão em contato na presença de um ácido.", "Um único metal é exposto a diferentes concentrações de oxigênio.", "Dois metais diferentes estão em contato elétrico na presença de um eletrólito.", "O metal sofre fadiga devido a tensões repetidas."],
+    correctAnswerIndex: 2,
+    difficulty: QuizDifficulty.Dificil,
+    explanation: "A corrosão galvânica é um processo eletroquímico que ocorre quando dois metais dissimilares são acoplados eletricamente em um eletrólito, fazendo com que o metal mais anódico (menos nobre) se corroa preferencialmente."
+  },
+  {
+    chapterId: 'cap15',
+    question: "Anéis de vedação (O-Rings) são primariamente usados para qual tipo de selagem?",
+    options: ["Vedação estática entre superfícies planas, como juntas.", "Vedação dinâmica entre partes móveis, como em atuadores hidráulicos.", "Atuar como arruelas de pressão em parafusos.", "Isolamento elétrico em conexões."],
+    correctAnswerIndex: 1,
+    difficulty: QuizDifficulty.Medio,
+    explanation: "O-Rings são projetados para serem comprimidos em um sulco, criando uma vedação eficaz entre componentes com movimento relativo (vedação dinâmica), como pistões em cilindros, embora também possam ser usados em algumas aplicações estáticas."
   }
 ];
