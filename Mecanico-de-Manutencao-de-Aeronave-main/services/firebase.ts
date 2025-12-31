@@ -1,8 +1,8 @@
 // services/firebase.ts
-// FIX: Updated imports to use the Firebase v9+ modular SDK syntax.
-import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
+// FIX: Using Firebase v8 compat libraries to resolve module import error. The error "Module has no exported member 'initializeApp'" suggests a Firebase version mismatch.
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import 'firebase/compat/firestore';
 
 // Configuração do seu aplicativo web Firebase
 const firebaseConfig = {
@@ -17,11 +17,12 @@ const firebaseConfig = {
 };
 
 // Inicializa o Firebase
-// FIX: Use the imported initializeApp function directly.
-const app = initializeApp(firebaseConfig);
+// FIX: Added a check to prevent re-initializing the app, which can cause errors.
+if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+}
 
 // Exporta os serviços que vamos usar no aplicativo
-// FIX: Use the imported functions directly.
-export const auth = getAuth(app);
-export const db = getFirestore(app);
-export const googleProvider = new GoogleAuthProvider();
+export const auth = firebase.auth();
+export const db = firebase.firestore();
+export const googleProvider = new firebase.auth.GoogleAuthProvider();

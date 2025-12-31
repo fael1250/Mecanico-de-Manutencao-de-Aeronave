@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { User } from 'firebase/auth';
-import { doc, getDoc, setDoc } from 'firebase/firestore';
+// FIX: Removed v9 modular imports for Firestore.
 import { db } from '../services/firebase';
 import { Progress } from '../types';
 
@@ -16,10 +16,12 @@ export const useProgress = (user: User | null) => {
       try {
         if (user) {
           // Usuário logado: busca do Firestore
-          const docRef = doc(db, 'progress', user.uid);
-          const docSnap = await getDoc(docRef);
+          // FIX: Changed to v8 compat API style for document reference.
+          const docRef = db.collection('progress').doc(user.uid);
+          // FIX: Changed to v8 compat API style for getting a document.
+          const docSnap = await docRef.get();
           
-          if (docSnap.exists()) {
+          if (docSnap.exists) {
             setProgress(docSnap.data() as Progress);
           } else {
             // Se não houver progresso na nuvem, verifica o local e sincroniza
@@ -27,7 +29,8 @@ export const useProgress = (user: User | null) => {
             if (localProgress) {
                 const parsedLocal = JSON.parse(localProgress);
                 setProgress(parsedLocal);
-                await setDoc(docRef, parsedLocal); // Salva na nuvem
+                // FIX: Changed to v8 compat API style for setting a document.
+                await docRef.set(parsedLocal); // Salva na nuvem
                 localStorage.removeItem(PROGRESS_STORAGE_KEY); // Limpa o local
             } else {
                 setProgress({}); // Inicia progresso vazio se não houver nada
@@ -58,8 +61,10 @@ export const useProgress = (user: User | null) => {
     try {
       if (user) {
         // Logado: salva no Firestore
-        const docRef = doc(db, 'progress', user.uid);
-        await setDoc(docRef, newProgress, { merge: true }); // Usar merge é mais seguro
+        // FIX: Changed to v8 compat API style for document reference.
+        const docRef = db.collection('progress').doc(user.uid);
+        // FIX: Changed to v8 compat API style for setting a document with merge.
+        await docRef.set(newProgress, { merge: true }); // Usar merge é mais seguro
       } else {
         // Deslogado: salva no localStorage
         localStorage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify(newProgress));
@@ -74,8 +79,10 @@ export const useProgress = (user: User | null) => {
     setProgress({});
     try {
       if(user) {
-        const docRef = doc(db, 'progress', user.uid);
-        await setDoc(docRef, {});
+        // FIX: Changed to v8 compat API style for document reference.
+        const docRef = db.collection('progress').doc(user.uid);
+        // FIX: Changed to v8 compat API style for setting an empty document.
+        await docRef.set({});
       } else {
         localStorage.removeItem(PROGRESS_STORAGE_KEY);
       }

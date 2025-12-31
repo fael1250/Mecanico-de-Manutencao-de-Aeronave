@@ -1,5 +1,7 @@
+
 import React, { useState, useEffect } from 'react';
-import { User, onAuthStateChanged, signInWithPopup, signOut } from 'firebase/auth';
+// FIX: Updated Firebase imports to align with v8 compat API.
+import { User } from 'firebase/auth';
 import { auth, googleProvider } from './services/firebase';
 
 import Header from './components/Header';
@@ -18,7 +20,8 @@ const App: React.FC = () => {
   const [isLoadingAuth, setIsLoadingAuth] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+    // FIX: Changed to v8 compat API style for onAuthStateChanged.
+    const unsubscribe = auth.onAuthStateChanged((currentUser) => {
       setUser(currentUser);
       setIsLoadingAuth(false);
     });
@@ -27,7 +30,8 @@ const App: React.FC = () => {
 
   const handleLogin = async () => {
     try {
-      await signInWithPopup(auth, googleProvider);
+      // FIX: Changed to v8 compat API style for signInWithPopup.
+      await auth.signInWithPopup(googleProvider);
     } catch (error: any) {
       console.error("Erro ao fazer login com Google:", error);
       if (error.code === 'auth/unauthorized-domain') {
@@ -52,7 +56,8 @@ const App: React.FC = () => {
 
   const handleLogout = async () => {
     try {
-      await signOut(auth);
+      // FIX: Changed to v8 compat API style for signOut.
+      await auth.signOut();
     } catch (error) {
       console.error("Erro ao fazer logout:", error);
     }
@@ -81,7 +86,7 @@ const App: React.FC = () => {
   }
 
   if (appState === 'landing') {
-    return <LandingPage onStart={enterMainApp} />;
+    return <LandingPage onStart={enterMainApp} onLogin={handleLogin} user={user} />;
   }
 
   return (
