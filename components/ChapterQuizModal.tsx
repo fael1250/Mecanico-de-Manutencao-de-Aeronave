@@ -1,6 +1,5 @@
-
 import React, { useState, useCallback, useEffect } from 'react';
-import { generateQuiz } from '../services/geminiService';
+import { generateQuiz } from '../services/quizService';
 import { QuizQuestion, QuizDifficulty, Chapter } from '../types';
 
 interface ChapterQuizModalProps {
@@ -22,7 +21,8 @@ const ChapterQuizModal: React.FC<ChapterQuizModalProps> = ({ chapter, onClose })
         setQuizState('loading');
         setError(null);
         try {
-            const generatedQuestions = await generateQuiz([chapter], QuizDifficulty.Medio, 20, false);
+            // Usa o gerador local para carregar questões específicas do capítulo
+            const generatedQuestions = await generateQuiz([chapter], QuizDifficulty.Medio, 10, false);
             if (generatedQuestions.length > 0) {
                 setQuestions(generatedQuestions);
                 setUserAnswers(new Array(generatedQuestions.length).fill(null));
@@ -30,7 +30,7 @@ const ChapterQuizModal: React.FC<ChapterQuizModalProps> = ({ chapter, onClose })
                 setScore(0);
                 setQuizState('active');
             } else {
-                setError("Não foi possível gerar o quiz. Tente fechar e abrir novamente.");
+                setError("Não há questões cadastradas para este capítulo no momento.");
                 setQuizState('finished');
             }
         } catch (err) {
@@ -69,7 +69,7 @@ const ChapterQuizModal: React.FC<ChapterQuizModalProps> = ({ chapter, onClose })
                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                     </svg>
-                    <p className="font-technical text-lg text-gray-300">Gerando quiz do capítulo...</p>
+                    <p className="font-technical text-lg text-gray-300">Carregando questões do capítulo...</p>
                 </div>
             );
         }
@@ -150,7 +150,7 @@ const ChapterQuizModal: React.FC<ChapterQuizModalProps> = ({ chapter, onClose })
         <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4" onClick={onClose}>
             <div className="bg-gray-800 border border-gray-700 rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] flex flex-col" onClick={e => e.stopPropagation()}>
                 <div className="flex justify-between items-center p-4 border-b border-gray-700">
-                    <h2 className="text-xl font-bold text-cyan-400">Quiz Rápido: {chapter.title}</h2>
+                    <h2 className="text-xl font-bold text-cyan-400">Avaliação: {chapter.title}</h2>
                     <button onClick={onClose} className="text-gray-400 hover:text-white">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
