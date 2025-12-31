@@ -7,7 +7,7 @@ import 'firebase/compat/firestore';
 // Configuração do seu aplicativo web Firebase
 const firebaseConfig = {
   // FIX: Replaced hardcoded API key with an environment variable as per security guidelines.
-  apiKey: process.env.API_KEY3,
+  apiKey: "process.env.API_KEY",
   authDomain: "aerostudy-app.firebaseapp.com",
   projectId: "aerostudy-app",
   storageBucket: "aerostudy-app.appspot.com",
