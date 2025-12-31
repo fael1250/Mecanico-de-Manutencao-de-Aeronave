@@ -1,0 +1,5 @@
+{
+  "name": "AeroStudy - Módulo Básico",
+  "description": "Uma plataforma de estudos para futuros Mecânicos de Manutenção de Aeronaves (MMA), focada no Módulo Básico da ANAC. Inclui material de estudo, flashcards e quizzes gerados por IA para preparação para o exame.",
+  "requestFramePermissions": []
+}

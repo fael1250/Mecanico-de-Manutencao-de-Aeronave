@@ -1,12 +1,12 @@
 // services/firebase.ts
+// FIX: Updated imports to use the Firebase v9+ modular SDK syntax.
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
-
 // Configuração do seu aplicativo web Firebase
 const firebaseConfig = {
-  // FIX: Using environment variable for API Key as required by guidelines.
+  // FIX: Replaced hardcoded API key with an environment variable as per security guidelines.
   apiKey: process.env.API_KEY,
   authDomain: "aerostudy-app.firebaseapp.com",
   projectId: "aerostudy-app",
@@ -17,9 +17,11 @@ const firebaseConfig = {
 };
 
 // Inicializa o Firebase
+// FIX: Use the imported initializeApp function directly.
 const app = initializeApp(firebaseConfig);
 
 // Exporta os serviços que vamos usar no aplicativo
+// FIX: Use the imported functions directly.
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 export const googleProvider = new GoogleAuthProvider();

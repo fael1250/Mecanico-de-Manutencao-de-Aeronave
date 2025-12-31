@@ -28,38 +28,27 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
     <div className="bg-[#0D1117] text-white">
       {/* Hero Section */}
       <header
-        className="relative min-h-screen flex items-center justify-center text-center bg-black overflow-hidden"
+        className="relative min-h-screen flex items-center justify-center text-center bg-black"
       >
-        <div className="absolute inset-0 bg-grid-pattern opacity-50"></div>
-        <div className="relative z-10 px-4 scroll-animate fade-in-up is-visible border-2 border-cyan-400/80 rounded-xl p-8 md:p-12 shadow-[0_0_25px_rgba(56,189,248,0.2)] bg-black/60 backdrop-blur-sm">
+        <div className="relative z-10 px-4 scroll-animate fade-in-up is-visible border-2 border-cyan-400/80 rounded-xl p-8 md:p-12 shadow-[0_0_25px_rgba(56,189,248,0.2)]">
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-white mb-4">
             Sua Carreira na Aviação <span className="text-cyan-400">Começa Aqui</span>
           </h1>
-          <p className="text-lg md:text-xl max-w-3xl mx-auto text-gray-300 mb-8 font-technical">
+          <p className="text-lg md:text-xl max-w-3xl mx-auto text-gray-300 mb-8">
             A plataforma definitiva para sua aprovação como Mecânico de Manutenção de Aeronaves.
           </p>
-          <div className="inline-block p-1 border-2 border-indigo-500/80 rounded-lg shadow-[0_0_20px_rgba(129,140,248,0.3)]">
-            <button
-              onClick={onStart}
-              className="bg-cyan-600 hover:bg-cyan-500 text-white font-bold py-3 px-8 rounded-md text-lg transition-transform transform hover:scale-105"
-            >
-              INICIAR ESTUDOS
-            </button>
-          </div>
-        </div>
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20">
-          <a href="#features" aria-label="Rolar para a próxima seção" className="flex flex-col items-center text-gray-400 hover:text-white transition-colors group">
-            <span className="font-technical text-xs mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">VER MAIS</span>
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-            </svg>
-          </a>
+          <button
+            onClick={onStart}
+            className="bg-cyan-600 hover:bg-cyan-500 text-white font-bold py-3 px-8 rounded-lg text-lg transition-transform transform hover:scale-105 shadow-lg shadow-cyan-500/30"
+          >
+            INICIAR ESTUDOS
+          </button>
         </div>
       </header>
 
       <main>
         {/* Features Section */}
-        <section id="features" className="py-20 bg-[#161B22]">
+        <section className="py-20 bg-[#161B22]">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold scroll-animate fade-in-up">Prepare-se para Decolar</h2>

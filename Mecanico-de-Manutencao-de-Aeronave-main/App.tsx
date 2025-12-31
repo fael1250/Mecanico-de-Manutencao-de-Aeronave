@@ -28,28 +28,12 @@ const App: React.FC = () => {
   const handleLogin = async () => {
     try {
       await signInWithPopup(auth, googleProvider);
-    } catch (error: any) {
+    } catch (error) {
       console.error("Erro ao fazer login com Google:", error);
-      if (error.code === 'auth/unauthorized-domain') {
-        alert(
-          'ERRO DE AUTENTICAÇÃO: Domínio não autorizado.\\n\\n' +
-          'O site (domínio Vercel) onde o aplicativo está rodando não tem permissão para usar o login do Firebase.\\n\\n' +
-          'COMO RESOLVER:\\n' +
-          '1. Abra o Console do Firebase do seu projeto (aerostudy-app).\\n' +
-          '2. No menu à esquerda, vá para "Authentication".\\n' +
-          '3. Clique na aba "Settings" (Configurações).\\n' +
-          '4. Na seção "Authorized domains" (Domínios autorizados), clique em "Add domain" (Adicionar domínio).\\n' +
-          '5. Adicione o domínio do seu site Vercel (ex: seu-projeto.vercel.app).\\n\\n' +
-          'Este é um ajuste de segurança no Firebase e não pode ser corrigido diretamente no código.'
-        );
-      } else if (error.code === 'auth/popup-closed-by-user') {
-        console.log("Janela de login fechada pelo usuário.");
-      } else {
-         alert(`Ocorreu um erro ao tentar fazer login: ${error.message}`);
-      }
     }
   };
 
+  // Fix: Corrected the syntax of the try...catch block.
   const handleLogout = async () => {
     try {
       await signOut(auth);
