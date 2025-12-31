@@ -4,7 +4,7 @@ import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 
 const firebaseConfig = {
-  apiKey: process.env.API_KEY,
+  apiKey: "AIzaSyDGm9pW62ZtcBMDvwEhj120tusL4j9UlAk",
   authDomain: "aerostudy-app.firebaseapp.com",
   projectId: "aerostudy-app",
   storageBucket: "aerostudy-app.appspot.com",
