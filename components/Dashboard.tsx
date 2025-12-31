@@ -1,4 +1,3 @@
-
 import React, { useState, useMemo } from 'react';
 import { basicModuleContent } from '../data/content';
 import { useProgress } from '../hooks/useProgress';
@@ -108,13 +107,13 @@ const Dashboard: React.FC<DashboardProps> = ({ currentChapterIndex, setCurrentCh
             </svg>
           </button>
           {isChapterNavOpen && (
-            <div className="absolute right-0 mt-2 w-72 bg-[#161B22] border border-[#30363D] rounded-lg shadow-lg z-20">
+            <div className="absolute right-0 mt-2 w-80 md:w-96 bg-[#161B22] border border-[#30363D] rounded-lg shadow-lg z-20">
               <ul className="py-2 max-h-60 overflow-y-auto">
                 {basicModuleContent.map((chap, index) => (
                   <li key={chap.id}>
                     <button
                       onClick={() => handleChapterSelect(index)}
-                      className={`w-full text-left px-4 py-2 text-sm font-technical transition-colors ${
+                      className={`w-full text-left px-4 py-2 text-xs md:text-sm font-technical transition-colors whitespace-normal ${
                         index === currentChapterIndex 
                         ? 'bg-cyan-600 text-white' 
                         : 'text-gray-300 hover:bg-[#30363D]'
@@ -149,30 +148,30 @@ const Dashboard: React.FC<DashboardProps> = ({ currentChapterIndex, setCurrentCh
             </div>
         )}
 
-        <div className="mt-10 flex justify-between items-center">
-            <div className="w-48 text-left">
+        <div className="mt-10 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div className="w-full md:w-48 text-center md:text-left order-3 md:order-3">
               {currentChapterIndex > 0 && (
                  <button 
                     onClick={() => setCurrentChapterIndex(currentChapterIndex - 1)}
-                    className="px-6 py-3 font-bold rounded-lg transition-all duration-300 transform bg-gray-700 hover:bg-gray-600 text-white hover:scale-105 cursor-pointer"
+                    className="w-full md:w-auto px-6 py-3 font-bold rounded-lg transition-all duration-300 transform bg-gray-700 hover:bg-gray-600 text-white hover:scale-105 cursor-pointer"
                 >
                     Capítulo Anterior
                 </button>
               )}
             </div>
             
-            <div className="text-center">
+            <div className="text-center order-1 md:order-2">
                {chapter.topics.length > 0 && (
                     <button 
                         onClick={() => setIsQuizModalOpen(true)}
-                        className="px-8 py-3 font-bold rounded-lg transition-all duration-300 transform bg-cyan-700 hover:bg-cyan-600 text-white hover:scale-105 cursor-pointer"
+                        className="w-full sm:w-auto px-8 py-3 font-bold rounded-lg transition-all duration-300 transform bg-cyan-700 hover:bg-cyan-600 text-white hover:scale-105 cursor-pointer"
                     >
                         Quiz do Capítulo
                     </button>
                 )}
             </div>
 
-            <div className="w-48 text-right">
+            <div className="w-full md:w-48 text-center md:text-right order-2 md:order-1">
               {currentChapterIndex < basicModuleContent.length - 1 ? (
                 <div>
                   <button 
