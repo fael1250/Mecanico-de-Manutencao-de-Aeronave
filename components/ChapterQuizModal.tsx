@@ -21,7 +21,7 @@ const ChapterQuizModal: React.FC<ChapterQuizModalProps> = ({ chapter, onClose })
         setQuizState('loading');
         setError(null);
         try {
-            // Usa o gerador local para carregar questões específicas do capítulo
+            // Usa o gerador local para carregar 10 questões específicas do capítulo
             const generatedQuestions = await generateQuiz([chapter], QuizDifficulty.Medio, 10, false);
             if (generatedQuestions.length > 0) {
                 setQuestions(generatedQuestions);
@@ -64,7 +64,7 @@ const ChapterQuizModal: React.FC<ChapterQuizModalProps> = ({ chapter, onClose })
     const renderContent = () => {
         if (quizState === 'loading') {
             return (
-                <div className="text-center flex flex-col items-center justify-center h-64">
+                <div className="text-center flex flex-col items-center justify-center h-64 flex-grow">
                     <svg className="animate-spin h-10 w-10 text-cyan-400 mb-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
@@ -76,20 +76,28 @@ const ChapterQuizModal: React.FC<ChapterQuizModalProps> = ({ chapter, onClose })
 
         if (quizState === 'finished') {
              const percentage = questions.length > 0 ? Math.round((score / questions.length) * 100) : 0;
+             const isApproved = percentage >= 70;
              return (
-                <div className="text-center p-8">
-                    <h2 className="text-2xl font-bold text-cyan-400 mb-4">Quiz Concluído!</h2>
-                    {error ? (
-                         <p className="text-red-400 mb-4">{error}</p>
-                    ) : (
-                        <>
-                            <p className="text-gray-300 text-lg mb-2">Sua pontuação final:</p>
-                            <p className="text-5xl font-bold mb-4 text-cyan-400">{percentage}%</p>
-                            <p className="font-technical text-gray-400 mb-6">({score} de {questions.length} respostas corretas)</p>
-                        </>
-                    )}
-                     <div className="flex justify-center mt-6">
-                        <button onClick={onClose} className="bg-cyan-600 hover:bg-cyan-500 text-white font-bold py-2 px-6 rounded-lg transition-transform transform hover:scale-105">
+                <div className="text-center p-6 flex flex-col flex-grow">
+                    <div className="flex-grow flex flex-col items-center justify-center">
+                        <h3 className="text-2xl font-bold text-cyan-400 mb-4">Quiz Concluído!</h3>
+                        {error ? (
+                             <p className="text-red-400">{error}</p>
+                        ) : (
+                            <>
+                                <p className="text-gray-300 text-lg">Sua pontuação final:</p>
+                                <p className="text-6xl font-black my-2 text-cyan-400">{percentage}%</p>
+                                <p className="font-technical text-gray-400">({score} de {questions.length} respostas corretas)</p>
+                            </>
+                        )}
+                    </div>
+                    <div className="flex justify-center mt-6 space-x-4">
+                        {!isApproved && !error && (
+                            <button onClick={startQuiz} className="bg-gray-600 hover:bg-gray-500 text-white font-bold py-2 px-8 rounded-lg transition-transform transform hover:scale-105">
+                                Tentar Novamente
+                            </button>
+                        )}
+                        <button onClick={onClose} className="bg-cyan-600 hover:bg-cyan-500 text-white font-bold py-2 px-8 rounded-lg transition-transform transform hover:scale-105">
                             Fechar
                         </button>
                     </div>
@@ -148,8 +156,8 @@ const ChapterQuizModal: React.FC<ChapterQuizModalProps> = ({ chapter, onClose })
 
     return (
         <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4" onClick={onClose}>
-            <div className="bg-gray-800 border border-gray-700 rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] flex flex-col" onClick={e => e.stopPropagation()}>
-                <div className="flex justify-between items-center p-4 border-b border-gray-700">
+            <div className="bg-[#161B22] border border-cyan-500/50 rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] flex flex-col" onClick={e => e.stopPropagation()}>
+                <div className="flex justify-between items-center p-4 border-b border-[#30363D]">
                     <h2 className="text-xl font-bold text-cyan-400">Avaliação: {chapter.title}</h2>
                     <button onClick={onClose} className="text-gray-400 hover:text-white">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">

@@ -21,7 +21,7 @@ const CheckboxIcon: React.FC<{ checked: boolean }> = ({ checked }) => (
 );
 
 const SubTopicItem: React.FC<{ subTopic: SubTopic; isCompleted: boolean; onToggle: () => void; onView: () => void; }> = ({ subTopic, isCompleted, onToggle, onView }) => (
-  <li className="flex items-center justify-between p-3 rounded-lg hover:bg-[#30363D]/50 transition-colors">
+  <li className="flex items-start justify-between p-3 rounded-lg hover:bg-[#30363D]/50 transition-colors">
     <div className="flex items-start space-x-3 cursor-pointer flex-1 mr-2" onClick={onToggle}>
       <CheckboxIcon checked={isCompleted} />
       <span className={`font-technical pt-px ${isCompleted ? 'line-through text-gray-500' : 'text-gray-300'}`}>{subTopic.title}</span>
