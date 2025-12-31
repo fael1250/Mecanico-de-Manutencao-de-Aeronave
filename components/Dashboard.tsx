@@ -94,9 +94,9 @@ const Dashboard: React.FC<DashboardProps> = ({ currentChapterIndex, setCurrentCh
 
   return (
     <>
-      <div className="mb-8 p-6 bg-[#161B22] border border-cyan-500/50 rounded-lg shadow-[0_0_15px_rgba(56,189,248,0.3)] flex justify-between items-center flex-wrap gap-4">
-        <h2 className="text-2xl md:text-3xl font-bold text-white">{chapter.title}</h2>
-        <div className="flex items-center shrink-0 gap-4">
+      <div className="mb-8 p-4 sm:p-6 bg-[#161B22] border border-cyan-500/50 rounded-lg shadow-[0_0_15px_rgba(56,189,248,0.3)] flex flex-col md:flex-row md:justify-between items-center gap-4">
+        <h2 className="text-2xl text-center md:text-left md:text-3xl font-bold text-white">{chapter.title}</h2>
+        <div className="flex items-center justify-center md:justify-end w-full md:w-auto shrink-0 gap-4">
             <a 
                 href="https://drive.google.com/uc?export=download&id=1axx3OFTq5bRkTMnHX25U4RI8CuOVVmi2"
                 target="_blank"
@@ -120,7 +120,7 @@ const Dashboard: React.FC<DashboardProps> = ({ currentChapterIndex, setCurrentCh
                 </svg>
               </button>
               {isChapterNavOpen && (
-                <div className="absolute right-0 mt-2 w-80 md:w-96 bg-[#161B22] border border-[#30363D] rounded-lg shadow-lg z-20">
+                <div className="absolute right-0 mt-2 w-72 sm:w-80 md:w-96 bg-[#161B22] border border-[#30363D] rounded-lg shadow-lg z-20">
                   <ul className="py-2 max-h-60 overflow-y-auto">
                     {basicModuleContent.map((chap, index) => (
                       <li key={chap.id}>

@@ -28,7 +28,7 @@ const ModuleButton: React.FC<{ text: string; active?: boolean; disabled?: boolea
 const Header: React.FC<HeaderProps> = ({ onGoHome }) => {
   return (
     <header className="bg-[#161B22] sticky top-0 z-50 border-b border-[#30363D]">
-      <div className="container mx-auto px-4 md:px-8 flex justify-between items-center py-3">
+      <div className="container mx-auto px-4 md:px-8 flex flex-col md:flex-row justify-between items-center py-3 gap-4 md:gap-0">
         <button onClick={onGoHome} className="flex items-center space-x-2 group">
            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M12 3 L2 21 H 22 L12 3 Z" />
@@ -37,7 +37,7 @@ const Header: React.FC<HeaderProps> = ({ onGoHome }) => {
           </svg>
           <h1 className="text-xl md:text-2xl font-bold text-white tracking-wider">Aero<span className="text-cyan-400">Study</span></h1>
         </button>
-        <nav className="flex items-center space-x-4">
+        <nav className="flex items-center justify-center flex-wrap gap-x-4 gap-y-2">
             <ModuleButton text="Básico" active={true} />
             <ModuleButton text="Célula" disabled={true} />
             <ModuleButton text="GMP" disabled={true} />
