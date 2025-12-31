@@ -28,11 +28,9 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
     <div className="bg-[#0D1117] text-white">
       {/* Hero Section */}
       <header
-        className="relative min-h-screen flex items-center justify-center text-center bg-cover bg-center"
-        style={{ backgroundImage: "url('https://images.unsplash.com/photo-1558642769-93e0d8699d79?q=80&w=2070&auto=format&fit=crop')" }}
+        className="relative min-h-screen flex items-center justify-center text-center bg-black"
       >
-        <div className="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
-        <div className="relative z-10 px-4 scroll-animate fade-in-up is-visible">
+        <div className="relative z-10 px-4 scroll-animate fade-in-up is-visible border-2 border-cyan-400/80 rounded-xl p-8 md:p-12 shadow-[0_0_25px_rgba(56,189,248,0.2)]">
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-white mb-4">
             Sua Carreira na Aviação <span className="text-cyan-400">Começa Aqui</span>
           </h1>
@@ -100,7 +98,15 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
           <div className="container mx-auto px-4">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div className="scroll-animate slide-in-left">
-                <img src="https://images.unsplash.com/photo-1620353128807-effe7c3e5a5c?q=80&w=1964&auto=format&fit=crop" alt="Mecânico de aeronaves trabalhando no trem de pouso" className="rounded-lg shadow-2xl"/>
+                <div className="relative h-80 w-full bg-[#0D1117] border border-[#30363D] rounded-lg p-6 flex items-center justify-center overflow-hidden shadow-2xl shadow-cyan-500/10">
+                    <div className="absolute top-4 left-4 w-12 h-12 border-t-2 border-l-2 border-cyan-500/50 rounded-tl-lg transition-all duration-300"></div>
+                    <div className="absolute bottom-4 right-4 w-12 h-12 border-b-2 border-r-2 border-cyan-500/50 rounded-br-lg transition-all duration-300"></div>
+                    <div className="absolute top-4 right-4 w-12 h-12 border-t-2 border-r-2 border-[#30363D] rounded-tr-lg transition-all duration-300"></div>
+                    <div className="absolute bottom-4 left-4 w-12 h-12 border-b-2 border-l-2 border-[#30363D] rounded-bl-lg transition-all duration-300"></div>
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-24 w-24 text-cyan-400/80" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                </div>
               </div>
               <div className="scroll-animate slide-in-right">
                 <h3 className="text-3xl font-bold mb-4">Domine o <span className="text-cyan-400">Módulo Básico</span></h3>
@@ -122,7 +128,14 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
           <div className="container mx-auto px-4">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div className="md:order-2 scroll-animate slide-in-right">
-                <img src="https://images.unsplash.com/photo-1544243649-512a874b3f3b?q=80&w=2070&auto=format&fit=crop" alt="Cockpit de uma aeronave moderna" className="rounded-lg shadow-2xl"/>
+                 <div className="relative h-80 w-full bg-[#0D1117] border border-[#30363D] rounded-lg p-6 flex items-center justify-center overflow-hidden shadow-2xl shadow-cyan-500/10">
+                    <div className="absolute w-64 h-64 rounded-full border-2 border-dashed border-cyan-500/20 animate-spin-slow"></div>
+                    <div className="absolute w-48 h-48 rounded-full border-2 border-cyan-500/40"></div>
+                    <div className="absolute w-32 h-32 rounded-full border-2 border-dashed border-cyan-500/60 animate-spin-slow" style={{ animationDirection: 'reverse' }}></div>
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-20 w-20 text-cyan-400/90" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </div>
               </div>
               <div className="md:order-1 scroll-animate slide-in-left">
                 <h3 className="text-3xl font-bold mb-4">Teste Seu Conhecimento</h3>
