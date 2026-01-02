@@ -9,7 +9,7 @@ import 'firebase/compat/firestore';
 // A configuração do Firebase. A chave de API é lida da variável de ambiente.
 // Isso é crucial para a segurança e para que o app funcione corretamente na Vercel.
 const firebaseConfig = {
-  apiKey: process.env.API_KEY, // USA A VARIÁVEL DE AMBIENTE
+  apiKey: "AIzaSyDGm9pW62ZtcBMDvwEhj120tusL4j9UlAk", // USA A VARIÁVEL DE AMBIENTE
   authDomain: "aerostudy-app.firebaseapp.com",
   projectId: "aerostudy-app",
   storageBucket: "aerostudy-app.appspot.com",
