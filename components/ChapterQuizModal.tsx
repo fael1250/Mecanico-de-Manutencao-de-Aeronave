@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import { generateQuiz } from '../services/quizService';
-import { QuizQuestion, QuizDifficulty, Chapter } from '../types';
+import { generateChapterQuiz } from '../services/geminiService';
+import { QuizQuestion, Chapter } from '../types';
 
 interface ChapterQuizModalProps {
   chapter: Chapter;
@@ -16,21 +16,22 @@ const ChapterQuizModal: React.FC<ChapterQuizModalProps> = ({ chapter, onClose })
     const [userAnswers, setUserAnswers] = useState<(number | null)[]>([]);
     const [score, setScore] = useState(0);
     const [error, setError] = useState<string | null>(null);
+    const [showExplanation, setShowExplanation] = useState(false);
 
     const startQuiz = useCallback(async () => {
         setQuizState('loading');
         setError(null);
         try {
-            // Usa o gerador local para carregar 10 questões específicas do capítulo
-            const generatedQuestions = await generateQuiz([chapter], QuizDifficulty.Medio, 10, false);
-            if (generatedQuestions.length > 0) {
+            const generatedQuestions = await generateChapterQuiz(chapter, 10);
+            if (generatedQuestions && generatedQuestions.length > 0) {
                 setQuestions(generatedQuestions);
                 setUserAnswers(new Array(generatedQuestions.length).fill(null));
                 setCurrentQuestionIndex(0);
                 setScore(0);
+                setShowExplanation(false);
                 setQuizState('active');
             } else {
-                setError("Não há questões cadastradas para este capítulo no momento.");
+                setError("Não foi possível gerar questões para este capítulo no momento.");
                 setQuizState('finished');
             }
         } catch (err) {
@@ -44,16 +45,18 @@ const ChapterQuizModal: React.FC<ChapterQuizModalProps> = ({ chapter, onClose })
     }, [startQuiz]);
 
     const handleAnswer = (optionIndex: number) => {
-        if (userAnswers[currentQuestionIndex] !== null) return;
+        if (showExplanation) return;
         const newAnswers = [...userAnswers];
         newAnswers[currentQuestionIndex] = optionIndex;
         setUserAnswers(newAnswers);
         if (optionIndex === questions[currentQuestionIndex].correctAnswerIndex) {
             setScore(s => s + 1);
         }
+        setShowExplanation(true);
     };
     
     const nextQuestion = () => {
+        setShowExplanation(false);
         if (currentQuestionIndex < questions.length - 1) {
             setCurrentQuestionIndex(i => i + 1);
         } else {
@@ -69,20 +72,20 @@ const ChapterQuizModal: React.FC<ChapterQuizModalProps> = ({ chapter, onClose })
                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                     </svg>
-                    <p className="font-technical text-lg text-gray-300">Carregando questões do capítulo...</p>
+                    <p className="font-technical text-lg text-gray-300">Gerando quiz com IA...</p>
+                    <p className="font-technical text-sm text-gray-500">Isso pode levar alguns segundos.</p>
                 </div>
             );
         }
 
         if (quizState === 'finished') {
              const percentage = questions.length > 0 ? Math.round((score / questions.length) * 100) : 0;
-             const isApproved = percentage >= 70;
              return (
                 <div className="text-center p-6 flex flex-col flex-grow">
                     <div className="flex-grow flex flex-col items-center justify-center">
                         <h3 className="text-2xl font-bold text-cyan-400 mb-4">Quiz Concluído!</h3>
                         {error ? (
-                             <p className="text-red-400">{error}</p>
+                             <p className="text-red-400 font-technical">{error}</p>
                         ) : (
                             <>
                                 <p className="text-gray-300 text-lg">Sua pontuação final:</p>
@@ -92,7 +95,7 @@ const ChapterQuizModal: React.FC<ChapterQuizModalProps> = ({ chapter, onClose })
                         )}
                     </div>
                     <div className="flex justify-center mt-6 space-x-4">
-                        {!isApproved && !error && (
+                        {!error && (
                             <button onClick={startQuiz} className="bg-gray-600 hover:bg-gray-500 text-white font-bold py-2 px-8 rounded-lg transition-transform transform hover:scale-105">
                                 Tentar Novamente
                             </button>
@@ -107,7 +110,6 @@ const ChapterQuizModal: React.FC<ChapterQuizModalProps> = ({ chapter, onClose })
 
         if (quizState === 'active' && questions.length > 0) {
             const question = questions[currentQuestionIndex];
-            const answered = userAnswers[currentQuestionIndex] !== null;
 
             return (
                  <div className="p-6 overflow-y-auto font-technical">
@@ -120,31 +122,45 @@ const ChapterQuizModal: React.FC<ChapterQuizModalProps> = ({ chapter, onClose })
                             const isSelected = userAnswers[currentQuestionIndex] === index;
                             const isCorrect = question.correctAnswerIndex === index;
                             
-                            let buttonClass = 'bg-[#30363D] hover:bg-gray-600';
-                            if (answered) {
+                            let buttonClass = 'bg-[#30363D] hover:bg-gray-600 border-transparent';
+                            if (showExplanation) {
                                 if (isCorrect) {
-                                    buttonClass = 'bg-green-500';
+                                    buttonClass = 'bg-green-600 border-green-400 scale-[1.02] shadow-lg shadow-green-500/20';
                                 } else if (isSelected) {
-                                    buttonClass = 'bg-red-500';
+                                     buttonClass = 'bg-red-600 border-red-400 opacity-80';
                                 } else {
-                                    buttonClass = 'bg-[#30363D] opacity-60';
+                                     buttonClass = 'bg-[#161B22] border-[#30363D] opacity-40';
                                 }
                             }
 
                             return (
-                                <button key={index} onClick={() => handleAnswer(index)} disabled={answered}
-                                    className={`w-full text-left p-4 rounded-lg transition-colors text-white ${buttonClass}`}>
-                                    <span className="font-bold mr-3">{String.fromCharCode(65 + index)}.</span> {option}
+                                <button key={index} onClick={() => handleAnswer(index)} disabled={showExplanation}
+                                    className={`w-full text-left p-4 rounded-lg border-2 transition-all text-white flex items-start ${buttonClass}`}>
+                                    <span className="font-bold mr-4 bg-black/20 w-7 h-7 flex items-center justify-center rounded-full flex-shrink-0">
+                                        {String.fromCharCode(65 + index)}
+                                    </span> 
+                                    <span>{option}</span>
                                 </button>
                             );
                         })}
                     </div>
-                     {answered && (
-                        <div className="flex justify-end mt-8">
-                            <button onClick={nextQuestion} className="bg-cyan-600 hover:bg-cyan-500 text-white font-bold py-2 px-6 rounded-lg transition-transform transform hover:scale-105">
-                                {currentQuestionIndex < questions.length - 1 ? 'Próxima' : 'Finalizar'}
-                            </button>
-                        </div>
+                     {showExplanation && (
+                        <div className="mt-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+                           {question.explanation && (
+                               <div className="p-4 bg-cyan-500/10 rounded-lg border border-cyan-500/30 mb-4">
+                                   <p className="font-bold text-cyan-400 mb-1">Fundamento:</p>
+                                   <p className="text-gray-300 text-sm leading-relaxed">{question.explanation}</p>
+                               </div>
+                           )}
+                           <div className="flex justify-end">
+                               <button onClick={nextQuestion} className="bg-cyan-600 hover:bg-cyan-500 text-white font-black py-3 px-8 rounded-lg transition-all transform hover:scale-105 flex items-center space-x-2">
+                                   <span>{currentQuestionIndex < questions.length - 1 ? 'PRÓXIMA' : 'FINALIZAR'}</span>
+                                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                       <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                                   </svg>
+                               </button>
+                           </div>
+                       </div>
                     )}
                 </div>
             );
