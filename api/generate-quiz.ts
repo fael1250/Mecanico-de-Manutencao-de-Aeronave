@@ -1,5 +1,5 @@
 import { GoogleGenAI, Type } from "@google/genai";
-import { Chapter } from "../src/types"; // ajuste o caminho se necessário
+import { Chapter } from "../src/types";
 
 function chapterToString(chapter: Chapter): string {
   let contentString = `Capítulo: ${chapter.title}\n\n`;
@@ -31,15 +31,23 @@ const quizSchema = {
 
 export default async function handler(req: any, res: any) {
   if (req.method !== "POST") {
-    return res.status(405).json({ error: "Método não permitido" });
+    res.statusCode = 405;
+    return res.end(JSON.stringify({ error: "Método não permitido" }));
   }
 
   if (!process.env.GOOGLE_GENERATIVE_AI_API_KEY) {
-    return res.status(500).json({ error: "API Key não configurada" });
+    res.statusCode = 500;
+    return res.end(JSON.stringify({ error: "API Key não configurada" }));
   }
 
   try {
-    const { chapter, numberOfQuestions = 10 } = req.body;
+    const buffers: Uint8Array[] = [];
+    for await (const chunk of req) {
+      buffers.push(chunk);
+    }
+    const body = JSON.parse(Buffer.concat(buffers).toString());
+
+    const { chapter, numberOfQuestions = 10 } = body;
 
     const ai = new GoogleGenAI({
       apiKey: process.env.GOOGLE_GENERATIVE_AI_API_KEY,
@@ -65,10 +73,14 @@ ${chapterToString(chapter)}
     });
 
     const quiz = JSON.parse(response.text.trim());
-    return res.status(200).json(quiz);
+
+    res.statusCode = 200;
+    res.setHeader("Content-Type", "application/json");
+    return res.end(JSON.stringify(quiz));
 
   } catch (error) {
     console.error(error);
-    return res.status(500).json({ error: "Erro ao gerar quiz" });
+    res.statusCode = 500;
+    return res.end(JSON.stringify({ error: "Erro ao gerar quiz" }));
   }
 }
