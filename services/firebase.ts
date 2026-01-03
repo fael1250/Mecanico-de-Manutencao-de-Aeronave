@@ -6,7 +6,7 @@ import { getFirestore, Firestore } from 'firebase/firestore';
 
 // A configuração do Firebase. A chave de API é lida da variável de ambiente.
 const firebaseConfig = {
-  apiKey: process.env.API_KEY, // USA A VARIÁVEL DE AMBIENTE
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY, // USA A VARIÁVEL DE AMBIENTE
   authDomain: "aerostudy-app.firebaseapp.com",
   projectId: "aerostudy-app",
   storageBucket: "aerostudy-app.appspot.com",
