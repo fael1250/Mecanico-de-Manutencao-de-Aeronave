@@ -45,10 +45,10 @@ export const generateChapterQuiz = async (
     chapter: Chapter,
     numberOfQuestions: number = 10
 ): Promise<QuizQuestion[]> => {
-    if (!process.env.API_KEY) {
+    if (!process.env.GOOGLE_GENERATIVE_AI_API_KEY) {
         throw new Error("A chave de API do Gemini não está configurada.");
     }
-    const ai = new GoogleGenAI({apiKey: process.env.API_KEY});
+    const ai = new GoogleGenAI({apiKey: process.env.GOOGLE_GENERATIVE_AI_API_KEY});
     
     const chapterContent = chapterToString(chapter);
 
