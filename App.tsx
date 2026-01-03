@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { User } from 'firebase/auth';
+import { User, onAuthStateChanged, signInWithPopup, signOut } from 'firebase/auth';
 import { auth, googleProvider, isFirebaseConfigured } from './services/firebase';
 
 import Header from './components/Header';
@@ -45,7 +45,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     if (auth) {
-        const unsubscribe = auth.onAuthStateChanged((currentUser) => {
+        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
             setIsLoadingAuth(false);
         });
@@ -58,7 +58,7 @@ const App: React.FC = () => {
   const handleLogin = async () => {
     if (!auth || !googleProvider) return;
     try {
-      await auth.signInWithPopup(googleProvider);
+      await signInWithPopup(auth, googleProvider);
     } catch (error: any) {
       console.error("Erro ao fazer login com Google:", error);
       if (error.code === 'auth/unauthorized-domain') {
@@ -84,7 +84,7 @@ const App: React.FC = () => {
   const handleLogout = async () => {
     if (!auth) return;
     try {
-      await auth.signOut();
+      await signOut(auth);
     } catch (error) {
       console.error("Erro ao fazer logout:", error);
     }

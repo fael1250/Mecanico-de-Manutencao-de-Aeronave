@@ -1,4 +1,4 @@
-TypeScriptimport { GoogleGenAI, Type } from '@google/genai';
+import { GoogleGenAI, Type } from '@google/genai';
 import { Chapter, QuizQuestion } from '../types';
 
 function chapterToString(chapter: Chapter): string {
@@ -17,14 +17,25 @@ const quizSchema = {
   items: {
     type: Type.OBJECT,
     properties: {
-      question: { type: Type.STRING, description: "A pergunta do quiz." },
+      question: {
+        type: Type.STRING,
+        description: "A pergunta do quiz."
+      },
       options: {
         type: Type.ARRAY,
-        items: { type: Type.STRING },
-        description: "Um array com 4 opções de resposta.",
+        items: {
+          type: Type.STRING,
+        },
+        description: "Um array com 4 opções de resposta."
       },
-      correctAnswerIndex: { type: Type.INTEGER, description: "O índice (0 a 3) da resposta correta no array de opções." },
-      explanation: { type: Type.STRING, description: "Uma breve explicação do porquê a resposta está correta, baseada no conteúdo fornecido." },
+      correctAnswerIndex: {
+        type: Type.INTEGER,
+        description: "O índice (0 a 3) da resposta correta no array de opções."
+      },
+      explanation: {
+        type: Type.STRING,
+        description: "Uma breve explicação do porquê a resposta está correta, baseada no conteúdo fornecido."
+      },
     },
     required: ["question", "options", "correctAnswerIndex", "explanation"],
   },
@@ -34,12 +45,11 @@ export const generateChapterQuiz = async (
     chapter: Chapter,
     numberOfQuestions: number = 10
 ): Promise<QuizQuestion[]> => {
-    const apiKey = process.env.API_KEY;
-    if (!apiKey) {
+    if (!process.env.API_KEY) {
         throw new Error("A chave de API do Gemini não está configurada.");
     }
-
-    const ai = new GoogleGenAI({ apiKey });
+    const ai = new GoogleGenAI({apiKey: process.env.API_KEY});
+    
     const chapterContent = chapterToString(chapter);
 
     const prompt = `
@@ -60,7 +70,7 @@ export const generateChapterQuiz = async (
 
     try {
         const response = await ai.models.generateContent({
-            model: "gemini-1.5-flash",  // ou "gemini-1.5-pro" para mais precisão
+            model: "gemini-3-flash-preview",
             contents: prompt,
             config: {
                 responseMimeType: "application/json",
@@ -69,9 +79,10 @@ export const generateChapterQuiz = async (
             },
         });
 
-        const jsonText = response.text().trim();  // Na nova versão, usa .text()
+        const jsonText = response.text.trim();
         const quizData = JSON.parse(jsonText);
 
+        // Validate the structure
         if (!Array.isArray(quizData)) {
             throw new Error("A resposta da IA não é um array.");
         }
@@ -96,6 +107,6 @@ export const generateChapterQuiz = async (
 
     } catch (error) {
         console.error("Erro ao gerar quiz com Gemini:", error);
-        throw new Error("Não foi possível gerar as questões. Tente novamente.");
+        throw new Error("Não foi possível gerar as questões. A IA pode estar indisponível ou a resposta foi inválida. Tente novamente.");
     }
 };

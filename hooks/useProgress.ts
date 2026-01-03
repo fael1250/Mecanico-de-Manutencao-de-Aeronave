@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { User } from 'firebase/auth';
 import { db } from '../services/firebase';
 import { Progress } from '../types';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
 
 const PROGRESS_STORAGE_KEY = 'aeroStudyProgress';
 
@@ -13,18 +14,18 @@ export const useProgress = (user: User | null) => {
     const loadProgress = async () => {
       setIsLoaded(false);
       try {
-        if (user && db) { // VERIFICA SE DB ESTÁ DISPONÍVEL
-          const docRef = db.collection('progress').doc(user.uid);
-          const docSnap = await docRef.get();
+        if (user && db) {
+          const docRef = doc(db, 'progress', user.uid);
+          const docSnap = await getDoc(docRef);
           
-          if (docSnap.exists) {
+          if (docSnap.exists()) {
             setProgress(docSnap.data() as Progress);
           } else {
             const localProgress = localStorage.getItem(PROGRESS_STORAGE_KEY);
             if (localProgress) {
                 const parsedLocal = JSON.parse(localProgress);
                 setProgress(parsedLocal);
-                await docRef.set(parsedLocal);
+                await setDoc(docRef, parsedLocal);
                 localStorage.removeItem(PROGRESS_STORAGE_KEY);
             } else {
                 setProgress({});
@@ -52,9 +53,9 @@ export const useProgress = (user: User | null) => {
     const newProgress = { ...progress, [subTopicId]: !progress[subTopicId] };
     setProgress(newProgress);
     try {
-      if (user && db) { // VERIFICA SE DB ESTÁ DISPONÍVEL
-        const docRef = db.collection('progress').doc(user.uid);
-        await docRef.set(newProgress, { merge: true });
+      if (user && db) {
+        const docRef = doc(db, 'progress', user.uid);
+        await setDoc(docRef, newProgress, { merge: true });
       } else {
         localStorage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify(newProgress));
       }
@@ -66,9 +67,9 @@ export const useProgress = (user: User | null) => {
   const resetProgress = useCallback(async () => {
     setProgress({});
     try {
-      if(user && db) { // VERIFICA SE DB ESTÁ DISPONÍVEL
-        const docRef = db.collection('progress').doc(user.uid);
-        await docRef.set({});
+      if(user && db) {
+        const docRef = doc(db, 'progress', user.uid);
+        await setDoc(docRef, {});
       } else {
         localStorage.removeItem(PROGRESS_STORAGE_KEY);
       }
