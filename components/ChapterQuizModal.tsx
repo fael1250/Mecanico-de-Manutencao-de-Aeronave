@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import { generateQuizWithGemini } from "../services/quizService";
+import { generateChapterQuiz } from "../services/quizService";
 import { QuizQuestion, Chapter } from '../types';
 
 interface ChapterQuizModalProps {
@@ -22,7 +22,7 @@ const ChapterQuizModal: React.FC<ChapterQuizModalProps> = ({ chapter, onClose })
         setQuizState('loading');
         setError(null);
         try {
-            const generatedQuestions = await generateQuizWithGemini(chapter, 10);
+            const generatedQuestions = await generateChapterQuiz(chapter, 10);
             if (generatedQuestions && generatedQuestions.length > 0) {
                 setQuestions(generatedQuestions);
                 setUserAnswers(new Array(generatedQuestions.length).fill(null));
