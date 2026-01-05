@@ -1697,7 +1697,7 @@ h. Impenetrabilidade - significa que dois corpos não podem ocupar o mesmo espa�
           {
             id: 'eb-fund-1',
             title: 'Matéria, Molécula e Átomo',
-            content: `A matéria pode ser definida como algo que possui massa (peso) e ocupa espaço. A menor partícula de matéria é a molécula. Substâncias compostas por um único tipo de átomo são elementos. O átomo é a parte constitutiva básica da matéria, consistindo em um ou mais elétrons orbitando um núcleo.`
+            content: `A matéria pode ser definida como algo que possui massa (peso) e ocupa espaço. A menor partícula de matéria é a molécula. Substâncias compostas por um único tipo de átomo são elementos. O átomo é a parte constitutiva básica da matéria, consistindo em um ou mais elétrios orbitando um núcleo.`
           },
           {
             id: 'eb-fund-2',
@@ -2379,38 +2379,8 @@ h. Impenetrabilidade - significa que dois corpos não podem ocupar o mesmo espa�
           {
             id: 'map-corrosao-2',
             title: 'Agentes Corrosivos e Manutenção Preventiva',
-            content: `Os agentes corrosivos mais comuns são ácidos, álcalis e sais, além da própria atmosfera e água. A manutenção preventiva é crucial e inclui: limpeza adequada, lubrificação periódica, inspeção detalhada, tratamento imediato da corrosão, retoque da pintura e uso de capas protetoras.`
-          },
-          {
-            id: 'map-corrosao-3',
-            title: 'Remoção e Tratamento da Corrosão',
-            content: `O tratamento completo da corrosão envolve limpeza da área, remoção dos produtos de corrosão, neutralização dos resíduos, e restauração dos revestimentos de proteção. Métodos mecânicos (lixamento) e químicos são usados. O tratamento varia para cada tipo de metal (aços, alumínio, magnésio, titânio).`
-          }
-        ]
-      },
-      {
-        id: 'map-metais-processos',
-        title: 'Metais, Tratamentos e Testes',
-        subTopics: [
-          {
-            id: 'map-metais-1',
-            title: 'Estrutura e Propriedades dos Metais',
-            content: `Propriedades como dureza, maleabilidade, ductilidade e elasticidade são vitais. A seleção de metais para reparo considera a relação resistência-peso, confiabilidade e os cinco esforços básicos: tração, compressão, cisalhamento, flexão e torção.`
-          },
-          {
-            id: 'map-metais-2',
-            title: 'Princípios do Tratamento Térmico',
-            content: `O tratamento térmico é uma série de operações envolvendo o aquecimento e o resfriamento de metais no estado sólido para mudar suas propriedades mecânicas. Os processos variam para metais ferrosos e não ferrosos, e incluem têmpera, revenimento, recozimento e normalização.`
-          },
-          {
-            id: 'map-metais-3',
-            title: 'Processos de Tratamento Térmico para Aços e Ligas de Alumínio',
-            content: `Para aços, o endurecimento (têmpera) envolve aquecimento acima do ponto crítico e resfriamento rápido. O revenimento reduz a fragilidade. O recozimento amacia o metal. A cementação (case hardening) cria uma superfície dura sobre um núcleo macio.\n\nPara ligas de alumínio, os processos são tratamento de solução a quente e tratamento de precipitação a quente (envelhecimento artificial), que aumentam significativamente a resistência.`
-          },
-          {
-            id: 'map-metais-4',
-            title: 'Testes de Dureza',
-            content: `São usados para verificar a condição de dureza do metal e o resultado de um tratamento térmico. Os métodos mais conhecidos são Brinell (mede o diâmetro de uma impressão deixada por uma esfera), Rockwell (mede a profundidade da penetração de um penetrador) e Barcol (um medidor portátil para metais macios como alumínio).`
+            // FIX: Added missing 'content' property
+            content: `Os agentes corrosivos comuns na aviação incluem ar marinho, umidade, ácidos de baterias, produtos de limpeza inadequados e resíduos de combustão. A manutenção preventiva é crucial e envolve inspeções regulares, limpeza frequente para remover contaminantes, aplicação de revestimentos protetores (tintas, selantes), lubrificação e tratamento de áreas corroídas o mais rápido possível para evitar danos estruturais.`
           }
         ]
       }

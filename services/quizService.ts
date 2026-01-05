@@ -24,8 +24,15 @@ export async function generateAnacQuiz(
   });
 
   if (!response.ok) {
-    const errorData = await response.json();
-    throw new Error(errorData.error || "Falha ao gerar o simulado ANAC.");
+    try {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Falha ao gerar o simulado ANAC.");
+    } catch (e) {
+        // Se a análise do JSON falhar, significa que o servidor retornou um erro não estruturado (ex: HTML de erro 500).
+        const errorText = await response.text();
+        console.error("O servidor retornou um erro não-JSON:", errorText);
+        throw new Error("Ocorreu um erro inesperado no servidor. Por favor, tente novamente mais tarde.");
+    }
   }
 
   const quiz: QuizQuestion[] = await response.json();

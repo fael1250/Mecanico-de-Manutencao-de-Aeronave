@@ -1,11 +1,11 @@
 
 import { GoogleGenAI, Type } from "@google/genai";
-import { Chapter, QuizQuestion, QuizDifficulty } from "../src/types";
-import { basicModuleContent } from "../data/content";
+import { QuizQuestion, QuizDifficulty } from "../src/types";
+import { basicModuleOutline, ChapterOutline } from "../data/content-outline";
 import { Buffer } from "buffer";
 
 // Função otimizada para criar um "índice" de todos os tópicos, em vez do conteúdo completo.
-function getTopicOutline(chapters: Chapter[]): string {
+function getTopicOutline(chapters: ChapterOutline[]): string {
   let outline = "";
   chapters.forEach(chapter => {
     outline += `Capítulo: ${chapter.title}\n`;
@@ -72,7 +72,7 @@ export default async function handler(req: any, res: any) {
       apiKey: process.env.API_KEY,
     });
 
-    const topicOutline = getTopicOutline(basicModuleContent);
+    const topicOutline = getTopicOutline(basicModuleOutline);
 
     const prompt = `
       Você é um examinador especialista da ANAC criando um simulado completo e realista para a prova de Mecânico de Manutenção de Aeronaves, Módulo Básico.
