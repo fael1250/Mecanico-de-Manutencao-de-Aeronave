@@ -1,39 +1,35 @@
 
 import { Chapter, QuizQuestion, QuizDifficulty } from '../types';
-import { localQuestionsDB, LocalQuestion } from '../data/questions';
 
 /**
- * Embaralha um array de forma aleatória (algoritmo Fisher-Yates).
- * @param array O array a ser embaralhado.
- */
-function shuffleArray<T>(array: T[]): T[] {
-    const newArray = [...array];
-    for (let i = newArray.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
-    }
-    return newArray;
-}
-
-/**
- * Gera um simulado geral a partir do banco de questões local.
- * Filtra as questões pela dificuldade, embaralha e retorna o número solicitado.
+ * Gera um simulado geral da ANAC chamando a API de backend (Gemini).
  * 
  * @param difficulty O nível de dificuldade desejado.
  * @param numberOfQuestions O número de questões para o simulado.
- * @returns Um array de objetos QuizQuestion.
+ * @returns Uma promessa que resolve para um array de objetos QuizQuestion.
  */
-export function generateQuiz(difficulty: QuizDifficulty, numberOfQuestions: number): QuizQuestion[] {
-  // Filtra as questões do banco de dados pela dificuldade selecionada
-  const filteredQuestions: LocalQuestion[] = localQuestionsDB.filter(
-    (q) => q.difficulty === difficulty
-  );
+export async function generateAnacQuiz(
+  difficulty: QuizDifficulty,
+  numberOfQuestions: number = 60
+): Promise<QuizQuestion[]> {
+  const response = await fetch("/api/generate-anac-quiz", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      difficulty,
+      numberOfQuestions,
+    }),
+  });
 
-  // Embaralha as questões filtradas para garantir aleatoriedade
-  const shuffledQuestions = shuffleArray(filteredQuestions);
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.error || "Falha ao gerar o simulado ANAC.");
+  }
 
-  // Retorna o número de questões solicitado
-  return shuffledQuestions.slice(0, numberOfQuestions);
+  const quiz: QuizQuestion[] = await response.json();
+  return quiz;
 }
 
 
@@ -48,13 +44,30 @@ export async function generateChapterQuiz(
   chapter: Chapter,
   numberOfQuestions: number = 10
 ): Promise<QuizQuestion[]> {
+  // OTIMIZAÇÃO: Cria uma versão "leve" do capítulo, removendo o conteúdo textual pesado.
+  // A API de backend precisa apenas da estrutura de títulos para criar o prompt para a IA.
+  // Isso reduz drasticamente o tamanho do payload da requisição, tornando-a muito mais rápida.
+  const chapterOutlinePayload = {
+    id: chapter.id,
+    title: chapter.title,
+    topics: chapter.topics.map(topic => ({
+      id: topic.id,
+      title: topic.title,
+      subTopics: topic.subTopics.map(subTopic => ({
+        id: subTopic.id,
+        title: subTopic.title,
+        // O campo 'content' é intencionalmente omitido aqui.
+      })),
+    })),
+  };
+
   const response = await fetch("/api/generate-quiz", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      chapter,
+      chapter: chapterOutlinePayload, // Envia apenas a estrutura leve.
       numberOfQuestions,
     }),
   });

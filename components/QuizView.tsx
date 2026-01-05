@@ -1,6 +1,6 @@
 
 import React, { useState, useCallback } from 'react';
-import { generateQuiz } from '../services/quizService';
+import { generateAnacQuiz } from '../services/quizService';
 import { QuizQuestion, QuizDifficulty } from '../types';
 
 type QuizState = 'idle' | 'loading' | 'active' | 'finished';
@@ -15,15 +15,13 @@ const QuizView: React.FC = () => {
     const [difficulty, setDifficulty] = useState<QuizDifficulty>(QuizDifficulty.Facil);
     const [showExplanation, setShowExplanation] = useState(false);
 
-    const startQuiz = useCallback(() => {
+    const startQuiz = useCallback(async () => {
         setQuizState('loading');
         setError(null);
         try {
-            // Gera 60 questões a partir do banco de dados local
-            const generatedQuestions = generateQuiz(difficulty, 60);
+            const generatedQuestions = await generateAnacQuiz(difficulty, 60);
             
-            // Verifica se há questões suficientes para o simulado
-            if (generatedQuestions.length >= 40) { // Mínimo de 40 para ser um bom simulado
+            if (generatedQuestions && generatedQuestions.length > 0) {
                 setQuestions(generatedQuestions);
                 setUserAnswers(new Array(generatedQuestions.length).fill(null));
                 setCurrentQuestionIndex(0);
@@ -31,11 +29,11 @@ const QuizView: React.FC = () => {
                 setShowExplanation(false);
                 setQuizState('active');
             } else {
-                setError(`Não foi possível carregar questões suficientes para o nível ${difficulty}. Tente outro nível ou aguarde a adição de mais questões.`);
+                setError(`A IA não conseguiu gerar questões para o nível ${difficulty} no momento. Por favor, tente novamente.`);
                 setQuizState('idle');
             }
         } catch (err) {
-            setError(err instanceof Error ? err.message : "Um erro desconhecido ocorreu.");
+            setError(err instanceof Error ? err.message : "Um erro desconhecido ocorreu ao contatar a IA.");
             setQuizState('idle');
         }
     }, [difficulty]);
@@ -75,7 +73,8 @@ const QuizView: React.FC = () => {
                     <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                     <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                 </svg>
-                <p className="font-technical text-lg text-gray-300">Compilando Simulado Geral...</p>
+                <p className="font-technical text-lg text-gray-300">Gerando simulado com IA...</p>
+                <p className="font-technical text-sm text-gray-500">Isso pode levar alguns segundos.</p>
             </div>
         );
     }
@@ -87,9 +86,9 @@ const QuizView: React.FC = () => {
                 <div className="bg-cyan-500/10 border border-cyan-500/30 p-4 rounded-lg mb-6 text-left">
                     <p className="text-sm text-cyan-200 mb-2 font-bold">REGRAS DO EXAME:</p>
                     <ul className="text-xs text-gray-400 space-y-1 font-technical">
-                        <li>• Questões: 60 (ou o máximo disponível)</li>
-                        <li>• Matéria: Todos os capítulos</li>
-                        <li>• Aprovação: 70% (mínimo de acertos proporcional)</li>
+                        <li>• Questões: 60 (geradas por IA)</li>
+                        <li>• Matéria: Todos os capítulos do Módulo Básico</li>
+                        <li>• Aprovação: 70% de acertos</li>
                         <li>• Tempo sugerido: 2 horas</li>
                     </ul>
                 </div>
