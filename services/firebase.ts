@@ -1,3 +1,4 @@
+
 // services/firebase.ts
 
 import { initializeApp, FirebaseApp } from 'firebase/app';
@@ -6,10 +7,10 @@ import { getFirestore, Firestore } from 'firebase/firestore';
 
 // A configuração do Firebase. A chave de API é lida da variável de ambiente.
 const firebaseConfig = {
-  apiKey: "AIzaSyDGm9pW62ZtcBMDvwEhj120tusL4j9UlAk", // USA A VARIÁVEL DE AMBIENTE
+  apiKey: process.env.API_KEY,
   authDomain: "aerostudy-app.firebaseapp.com",
   projectId: "aerostudy-app",
-  storageBucket: "aerostudy-app.appspot.com",
+  storageBucket: "aerostudy-app.firebasestorage.app",
   messagingSenderId: "69752455360",
   appId: "1:69752455360:web:a698d92fe210ee6006ad25",
   measurementId: "G-8E5Z8F979E"
@@ -35,7 +36,7 @@ if (firebaseConfig.apiKey) {
     isFirebaseConfigured = false;
   }
 } else {
-  console.warn("Chave de API do Firebase não encontrada. O aplicativo exibirá a tela de erro de configuração.");
+  console.warn("Chave de API do Firebase não encontrada (API_KEY). O aplicativo exibirá a tela de erro de configuração.");
 }
 
 // Exporta as variáveis para serem usadas em outras partes do aplicativo.

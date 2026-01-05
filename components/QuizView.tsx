@@ -1,7 +1,7 @@
+
 import React, { useState, useCallback } from 'react';
 import { generateQuiz } from '../services/quizService';
 import { QuizQuestion, QuizDifficulty } from '../types';
-import { basicModuleContent } from '../data/content';
 
 type QuizState = 'idle' | 'loading' | 'active' | 'finished';
 
@@ -15,13 +15,15 @@ const QuizView: React.FC = () => {
     const [difficulty, setDifficulty] = useState<QuizDifficulty>(QuizDifficulty.Facil);
     const [showExplanation, setShowExplanation] = useState(false);
 
-    const startQuiz = useCallback(async () => {
+    const startQuiz = useCallback(() => {
         setQuizState('loading');
         setError(null);
         try {
-            // Configurado para 60 questões conforme pedido do usuário
-            const generatedQuestions = await generateQuiz(basicModuleContent, difficulty, 60, true);
-            if (generatedQuestions.length > 0) {
+            // Gera 60 questões a partir do banco de dados local
+            const generatedQuestions = generateQuiz(difficulty, 60);
+            
+            // Verifica se há questões suficientes para o simulado
+            if (generatedQuestions.length >= 40) { // Mínimo de 40 para ser um bom simulado
                 setQuestions(generatedQuestions);
                 setUserAnswers(new Array(generatedQuestions.length).fill(null));
                 setCurrentQuestionIndex(0);
@@ -29,7 +31,7 @@ const QuizView: React.FC = () => {
                 setShowExplanation(false);
                 setQuizState('active');
             } else {
-                setError("Ocorreu um erro e não foi possível carregar as questões. Tente novamente.");
+                setError(`Não foi possível carregar questões suficientes para o nível ${difficulty}. Tente outro nível ou aguarde a adição de mais questões.`);
                 setQuizState('idle');
             }
         } catch (err) {
@@ -73,7 +75,7 @@ const QuizView: React.FC = () => {
                     <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                     <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                 </svg>
-                <p className="font-technical text-lg text-gray-300">Compilando Simulando Geral (60 questões)...</p>
+                <p className="font-technical text-lg text-gray-300">Compilando Simulado Geral...</p>
             </div>
         );
     }
@@ -85,9 +87,9 @@ const QuizView: React.FC = () => {
                 <div className="bg-cyan-500/10 border border-cyan-500/30 p-4 rounded-lg mb-6 text-left">
                     <p className="text-sm text-cyan-200 mb-2 font-bold">REGRAS DO EXAME:</p>
                     <ul className="text-xs text-gray-400 space-y-1 font-technical">
-                        <li>• Questões: 60</li>
+                        <li>• Questões: 60 (ou o máximo disponível)</li>
                         <li>• Matéria: Todos os capítulos</li>
-                        <li>• Aprovação: 70% (mínimo 42 acertos)</li>
+                        <li>• Aprovação: 70% (mínimo de acertos proporcional)</li>
                         <li>• Tempo sugerido: 2 horas</li>
                     </ul>
                 </div>
@@ -100,7 +102,7 @@ const QuizView: React.FC = () => {
                         <option value={QuizDifficulty.Dificil}>Avançado</option>
                     </select>
                 </div>
-                {error && <p className="text-red-400 mb-4">{error}</p>}
+                {error && <p className="text-red-400 mb-4 font-technical text-sm">{error}</p>}
                 <button onClick={startQuiz} className="w-full bg-cyan-600 hover:bg-cyan-500 text-white font-bold py-3 px-4 rounded-lg transition-transform transform hover:scale-105 shadow-lg shadow-cyan-500/20">
                     Iniciar Simulado Completo
                 </button>
@@ -110,8 +112,10 @@ const QuizView: React.FC = () => {
 
     if (quizState === 'finished') {
         const finalScore = score;
-        const percentage = Math.round((finalScore / questions.length) * 100);
-        const isApproved = percentage >= 70;
+        const totalQuestions = questions.length;
+        const percentage = totalQuestions > 0 ? Math.round((finalScore / totalQuestions) * 100) : 0;
+        const approvalThreshold = Math.ceil(totalQuestions * 0.7);
+        const isApproved = finalScore >= approvalThreshold;
 
         return (
             <div className="text-center p-8 bg-[#161B22] border border-[#30363D] rounded-lg max-w-lg mx-auto shadow-2xl">
@@ -126,8 +130,8 @@ const QuizView: React.FC = () => {
                 <p className="text-gray-300 text-lg mb-2">Seu aproveitamento:</p>
                 <p className={`text-6xl font-black mb-4 ${isApproved ? 'text-green-400' : 'text-yellow-500'}`}>{percentage}%</p>
                 <p className="font-technical text-gray-400 mb-8">
-                    Você acertou {finalScore} das {questions.length} questões.<br/>
-                    {isApproved ? 'Excelente desempenho! Você está pronto para a banca.' : `Faltaram ${42 - finalScore} acertos para a nota de corte (70%).`}
+                    Você acertou {finalScore} das {totalQuestions} questões.<br/>
+                    {isApproved ? 'Excelente desempenho! Você está pronto para a banca.' : `Faltaram ${approvalThreshold - finalScore} acertos para a nota de corte (${approvalThreshold} acertos).`}
                 </p>
 
                 <button onClick={resetQuiz} className="w-full bg-cyan-600 hover:bg-cyan-500 text-white font-bold py-3 px-4 rounded-lg transition-transform transform hover:scale-105">

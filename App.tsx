@@ -17,9 +17,9 @@ const FirebaseConfigError: React.FC = () => (
             <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 mx-auto text-red-400 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
             </svg>
-           <h1 className="text-2xl font-bold text-red-400 mb-4">Erro de Configuração do Firebase</h1>
+           <h1 className="text-2xl font-bold text-red-400 mb-4">Erro de Configuração de API</h1>
            <p className="text-gray-300 font-technical text-left mb-6">
-             A Chave de API (API_KEY) do Firebase não foi encontrada. O aplicativo não pode ser iniciado porque depende dos serviços do Firebase para autenticação e salvamento de progresso.
+             A Chave de API não foi encontrada. O aplicativo não pode ser iniciado porque depende de serviços externos (Firebase e Google Gemini) que requerem uma chave de API para funcionar.
            </p>
            <div className="text-left font-technical text-sm text-gray-400 bg-[#0D1117] p-4 rounded-md border border-[#30363D]">
              <p className="font-bold text-white mb-2">COMO RESOLVER (em produção - Vercel):</p>
@@ -28,7 +28,7 @@ const FirebaseConfigError: React.FC = () => (
                <li>Vá para a aba <strong className="text-white">Settings</strong> e depois para <strong className="text-white">Environment Variables</strong> no menu lateral.</li>
                <li>Adicione uma nova variável de ambiente.</li>
                <li>No campo "Name", digite <code className="bg-gray-700 px-1.5 py-0.5 rounded text-cyan-300">API_KEY</code>.</li>
-               <li>No campo "Value", cole o valor da sua chave de API do Firebase.</li>
+               <li>No campo "Value", cole o valor da sua chave de API (esta chave será usada tanto para Firebase quanto para a IA do Gemini).</li>
                <li>Salve e, em seguida, vá para a aba <strong className="text-white">Deployments</strong> e faça um "Redeploy" da sua última versão para que as alterações tenham efeito.</li>
              </ol>
            </div>
