@@ -2,46 +2,62 @@
 import { Chapter, QuizQuestion, QuizDifficulty } from '../types';
 
 /**
- * Gera um simulado geral da ANAC chamando a API de backend (Gemini).
+ * Gera um simulado geral da ANAC chamando a API de backend (Gemini) em lotes
+ * para evitar timeouts do servidor.
  * 
  * @param difficulty O nível de dificuldade desejado.
- * @param numberOfQuestions O número de questões para o simulado.
+ * @param totalQuestions O número total de questões para o simulado.
+ * @param onProgress Callback para reportar o progresso da geração.
  * @returns Uma promessa que resolve para um array de objetos QuizQuestion.
  */
 export async function generateAnacQuiz(
   difficulty: QuizDifficulty,
-  numberOfQuestions: number = 60
+  totalQuestions: number = 60,
+  onProgress?: (generatedCount: number) => void
 ): Promise<QuizQuestion[]> {
-  const response = await fetch("/api/generate-anac-quiz", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      difficulty,
-      numberOfQuestions,
-    }),
-  });
+  const BATCH_SIZE = 10; // Gera 10 questões por chamada de API
+  const numBatches = Math.ceil(totalQuestions / BATCH_SIZE);
+  let allQuestions: QuizQuestion[] = [];
 
-  if (!response.ok) {
-    // Clona a resposta para permitir uma leitura segura do corpo em caso de falha na primeira tentativa.
-    const responseClone = response.clone();
-    try {
-        // Tenta ler o erro como JSON, que é o formato esperado.
+  for (let i = 0; i < numBatches; i++) {
+    // Cada iteração do loop é uma requisição de lote
+    const response = await fetch("/api/generate-anac-quiz", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        difficulty,
+        numberOfQuestions: BATCH_SIZE,
+      }),
+    });
+
+    if (!response.ok) {
+      // Se qualquer lote falhar, para e reporta o erro.
+      const responseClone = response.clone();
+      try {
         const errorData = await response.json();
-        throw new Error(errorData.error || "Falha ao gerar o simulado ANAC.");
-    } catch (e) {
-        // Se a leitura como JSON falhar (ex: a Vercel retornou um erro HTML),
-        // lê o corpo do clone como texto para obter a mensagem de erro.
+        throw new Error(errorData.error || "Falha ao gerar um lote de questões.");
+      } catch (e) {
         const errorText = await responseClone.text();
         console.error("O servidor retornou um erro não-JSON:", errorText);
         throw new Error("Ocorreu um erro inesperado no servidor. Por favor, tente novamente mais tarde.");
+      }
+    }
+
+    const batchQuestions: QuizQuestion[] = await response.json();
+    allQuestions = allQuestions.concat(batchQuestions);
+
+    if (onProgress) {
+      onProgress(Math.min(allQuestions.length, totalQuestions)); // Atualiza o progresso
     }
   }
 
-  // Se a resposta foi bem-sucedida, o corpo ainda não foi lido.
-  const quiz: QuizQuestion[] = await response.json();
-  return quiz;
+  // Embaralha todas as questões coletadas para garantir aleatoriedade
+  allQuestions.sort(() => Math.random() - 0.5);
+
+  // Retorna o número exato de questões solicitadas
+  return allQuestions.slice(0, totalQuestions);
 }
 
 

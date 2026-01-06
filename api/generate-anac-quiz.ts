@@ -61,7 +61,7 @@ export default async function handler(req: any, res: any) {
     }
     const body = JSON.parse(Buffer.concat(buffers).toString());
 
-    const { difficulty, numberOfQuestions = 60 } = body;
+    const { difficulty, numberOfQuestions = 10 } = body; // Padrão para 10 se não especificado
     
     if (!difficulty || !numberOfQuestions) {
         res.statusCode = 400;
@@ -75,12 +75,12 @@ export default async function handler(req: any, res: any) {
     const topicOutline = getTopicOutline(basicModuleOutline);
 
     const prompt = `
-      Você é um examinador especialista da ANAC criando um simulado completo e realista para a prova de Mecânico de Manutenção de Aeronaves, Módulo Básico.
-      Baseado na sua vasta base de conhecimento sobre aviação e usando o seguinte esboço de tópicos como guia, gere um simulado com exatamente ${numberOfQuestions} questões de múltipla escolha.
+      Você é um examinador especialista da ANAC criando questões para um simulado de Mecânico de Manutenção de Aeronaves, Módulo Básico.
+      Baseado na sua vasta base de conhecimento sobre aviação e usando o seguinte esboço de tópicos como guia, gere um conjunto de ${numberOfQuestions} questões de múltipla escolha.
       
       REGRAS IMPORTANTES:
       1. Nível de Dificuldade: As questões devem ter um nível de dificuldade **${difficulty}**.
-      2. Distribuição: As questões devem ser distribuídas de forma equilibrada entre os diferentes capítulos e tópicos listados no esboço. Não concentre as perguntas em apenas uma ou duas áreas.
+      2. Variedade: Tente selecionar tópicos variados do esboço para criar as questões. Não foque em uma única área.
       3. Formato: Cada questão deve ter exatamente 4 opções de resposta (A, B, C, D).
       4. Resposta Correta: A resposta correta deve ser indicada pelo 'correctAnswerIndex' (um número de 0 a 3).
       5. Justificativa: A 'explanation' deve ser concisa, precisa e justificar a resposta correta com base no conhecimento técnico de aviação.
