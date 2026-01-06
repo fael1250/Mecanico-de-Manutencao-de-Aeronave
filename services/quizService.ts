@@ -24,12 +24,16 @@ export async function generateAnacQuiz(
   });
 
   if (!response.ok) {
-    const errorText = await response.text(); // Lê o corpo da resposta como texto UMA VEZ.
+    // Clona a resposta para permitir uma leitura segura do corpo em caso de falha na primeira tentativa.
+    const responseClone = response.clone();
     try {
-        const errorData = JSON.parse(errorText); // Tenta analisar o texto como JSON.
+        // Tenta ler o erro como JSON, que é o formato esperado.
+        const errorData = await response.json();
         throw new Error(errorData.error || "Falha ao gerar o simulado ANAC.");
     } catch (e) {
-        // Se a análise falhar, a resposta não era JSON. O 'errorText' contém a mensagem do servidor.
+        // Se a leitura como JSON falhar (ex: a Vercel retornou um erro HTML),
+        // lê o corpo do clone como texto para obter a mensagem de erro.
+        const errorText = await responseClone.text();
         console.error("O servidor retornou um erro não-JSON:", errorText);
         throw new Error("Ocorreu um erro inesperado no servidor. Por favor, tente novamente mais tarde.");
     }
@@ -52,9 +56,7 @@ export async function generateChapterQuiz(
   chapter: Chapter,
   numberOfQuestions: number = 10
 ): Promise<QuizQuestion[]> {
-  // OTIMIZAÇÃO: Cria uma versão "leve" do capítulo, removendo o conteúdo textual pesado.
-  // A API de backend precisa apenas da estrutura de títulos para criar o prompt para a IA.
-  // Isso reduz drasticamente o tamanho do payload da requisição, tornando-a muito mais rápida.
+  // OTIMIZAÇÃO: Cria uma versão "leve" do capítulo para a requisição.
   const chapterOutlinePayload = {
     id: chapter.id,
     title: chapter.title,
@@ -64,7 +66,6 @@ export async function generateChapterQuiz(
       subTopics: topic.subTopics.map(subTopic => ({
         id: subTopic.id,
         title: subTopic.title,
-        // O campo 'content' é intencionalmente omitido aqui.
       })),
     })),
   };
@@ -75,18 +76,19 @@ export async function generateChapterQuiz(
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      chapter: chapterOutlinePayload, // Envia apenas a estrutura leve.
+      chapter: chapterOutlinePayload,
       numberOfQuestions,
     }),
   });
 
   if (!response.ok) {
-    const errorText = await response.text(); // Lê o corpo da resposta como texto UMA VEZ.
+    // Usa a mesma lógica robusta de clonagem para tratamento de erros.
+    const responseClone = response.clone();
     try {
-        const errorData = JSON.parse(errorText); // Tenta analisar o texto como JSON.
+        const errorData = await response.json();
         throw new Error(errorData.error || "Falha ao gerar o quiz do capítulo.");
     } catch (e) {
-        // Se a análise falhar, a resposta não era JSON.
+        const errorText = await responseClone.text();
         console.error("O servidor retornou um erro não-JSON:", errorText);
         throw new Error("Ocorreu um erro inesperado no servidor ao gerar o quiz do capítulo.");
     }
