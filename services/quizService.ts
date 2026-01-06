@@ -14,7 +14,7 @@ async function handleApiError(response: Response): Promise<never> {
         // Tenta analisar o erro como JSON (formato esperado da nossa API)
         const errorJson = JSON.parse(errorText);
         if (errorJson && errorJson.error) {
-            // Se for um JSON com a propriedade 'error', lança essa mensagem
+            // Se for um JSON com la propriedade 'error', lança essa mensagem
             throw new Error(errorJson.error);
         }
     } catch (e) {
@@ -41,7 +41,7 @@ export async function generateAnacQuiz(
   totalQuestions: number = 60,
   onProgress?: (generatedCount: number) => void
 ): Promise<QuizQuestion[]> {
-  const BATCH_SIZE = 5; // REDUZIDO PARA 5 PARA EVITAR TIMEOUT DO SERVIDOR
+  const BATCH_SIZE = 2; // REDUZIDO PARA 2 PARA MÁXIMA COMPATIBILIDADE COM O TIMEOUT DA VERCEL
   const numBatches = Math.ceil(totalQuestions / BATCH_SIZE);
   let allQuestions: QuizQuestion[] = [];
 

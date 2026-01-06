@@ -41,12 +41,16 @@ const quizSchema = {
 
 // Handler da Função Serverless Vercel
 export default async function handler(req: any, res: any) {
+  console.log("--- Início da Função generate-anac-quiz ---");
+
   if (req.method !== "POST") {
+    console.error("Método não permitido:", req.method);
     res.statusCode = 405;
     return res.end(JSON.stringify({ error: "Método não permitido" }));
   }
 
   if (!process.env.API_KEY) {
+    console.error("Chave de API não configurada no servidor.");
     res.statusCode = 500;
     return res.end(JSON.stringify({ 
         error: "Erro de Configuração do Servidor: A chave de API (API_KEY) não foi encontrada.",
@@ -61,7 +65,8 @@ export default async function handler(req: any, res: any) {
     }
     const body = JSON.parse(Buffer.concat(buffers).toString());
 
-    const { difficulty, numberOfQuestions = 10 } = body; // Padrão para 10 se não especificado
+    const { difficulty, numberOfQuestions = 10 } = body;
+    console.log(`Recebido pedido para ${numberOfQuestions} questões, dificuldade: ${difficulty}`);
     
     if (!difficulty || !numberOfQuestions) {
         res.statusCode = 400;
@@ -92,6 +97,7 @@ export default async function handler(req: any, res: any) {
       ---
     `;
 
+    console.log("Enviando requisição para a API do Gemini...");
     const response = await ai.models.generateContent({
       model: "gemini-3-flash-preview",
       contents: prompt,
@@ -101,19 +107,24 @@ export default async function handler(req: any, res: any) {
         temperature: 0.8,
       },
     });
+    console.log("Resposta recebida da API do Gemini.");
 
     const quiz: QuizQuestion[] = JSON.parse(response.text.trim());
+    console.log(`Sucesso! ${quiz.length} questões foram geradas e parseadas.`);
     
     if (!quiz || quiz.length === 0) {
+        console.warn("A API do Gemini retornou um array vazio ou inválido.");
         throw new Error("A API do Gemini retornou uma resposta vazia ou inválida.");
     }
 
     res.statusCode = 200;
     res.setHeader("Content-Type", "application/json");
+    console.log("--- Fim da Função generate-anac-quiz (Sucesso) ---");
     return res.end(JSON.stringify(quiz));
 
   } catch (error) {
-    console.error("Erro na API do Gemini ao gerar simulado ANAC:", error);
+    console.error("--- ERRO na Função generate-anac-quiz ---");
+    console.error("Objeto de erro completo:", error); // Log do objeto de erro completo
     res.statusCode = 500;
     const errorMessage = error instanceof Error ? error.message : "Erro desconhecido ao gerar o simulado.";
     return res.end(JSON.stringify({ error: `Falha ao se comunicar com a API do Gemini. Detalhes: ${errorMessage}` }));
