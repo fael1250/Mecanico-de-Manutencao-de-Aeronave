@@ -24,17 +24,18 @@ export async function generateAnacQuiz(
   });
 
   if (!response.ok) {
+    const errorText = await response.text(); // Lê o corpo da resposta como texto UMA VEZ.
     try {
-        const errorData = await response.json();
+        const errorData = JSON.parse(errorText); // Tenta analisar o texto como JSON.
         throw new Error(errorData.error || "Falha ao gerar o simulado ANAC.");
     } catch (e) {
-        // Se a análise do JSON falhar, significa que o servidor retornou um erro não estruturado (ex: HTML de erro 500).
-        const errorText = await response.text();
+        // Se a análise falhar, a resposta não era JSON. O 'errorText' contém a mensagem do servidor.
         console.error("O servidor retornou um erro não-JSON:", errorText);
         throw new Error("Ocorreu um erro inesperado no servidor. Por favor, tente novamente mais tarde.");
     }
   }
 
+  // Se a resposta foi bem-sucedida, o corpo ainda não foi lido.
   const quiz: QuizQuestion[] = await response.json();
   return quiz;
 }
@@ -80,10 +81,15 @@ export async function generateChapterQuiz(
   });
 
   if (!response.ok) {
-    // Se a resposta não for bem-sucedida, extrai a mensagem de erro do corpo
-    const errorData = await response.json();
-    // Lança um erro com a mensagem específica da API para ser exibida na UI
-    throw new Error(errorData.error || "Falha ao gerar o quiz do capítulo.");
+    const errorText = await response.text(); // Lê o corpo da resposta como texto UMA VEZ.
+    try {
+        const errorData = JSON.parse(errorText); // Tenta analisar o texto como JSON.
+        throw new Error(errorData.error || "Falha ao gerar o quiz do capítulo.");
+    } catch (e) {
+        // Se a análise falhar, a resposta não era JSON.
+        console.error("O servidor retornou um erro não-JSON:", errorText);
+        throw new Error("Ocorreu um erro inesperado no servidor ao gerar o quiz do capítulo.");
+    }
   }
 
   const quiz: QuizQuestion[] = await response.json();
