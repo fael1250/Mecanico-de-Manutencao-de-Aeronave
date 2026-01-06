@@ -2,6 +2,32 @@
 import { Chapter, QuizQuestion, QuizDifficulty } from '../types';
 
 /**
+ * Analisa uma resposta de erro da API e lança uma exceção com uma mensagem clara.
+ * Tenta extrair a mensagem de um JSON, caso contrário, usa o texto bruto da resposta.
+ * @param response A resposta da API que falhou.
+ */
+async function handleApiError(response: Response): Promise<never> {
+    const errorText = await response.text();
+    console.error("O servidor retornou um erro:", errorText);
+    
+    try {
+        // Tenta analisar o erro como JSON (formato esperado da nossa API)
+        const errorJson = JSON.parse(errorText);
+        if (errorJson && errorJson.error) {
+            // Se for um JSON com a propriedade 'error', lança essa mensagem
+            throw new Error(errorJson.error);
+        }
+    } catch (e) {
+        // Se não for JSON, ou não tiver a propriedade 'error', o texto bruto é usado no fallback abaixo.
+    }
+
+    // Fallback para o texto completo se o parsing JSON falhar.
+    // Isso é útil para capturar erros de timeout da Vercel (que retornam HTML) ou outros erros inesperados.
+    throw new Error(errorText);
+}
+
+
+/**
  * Gera um simulado geral da ANAC chamando a API de backend (Gemini) em lotes
  * para evitar timeouts do servidor.
  * 
@@ -15,7 +41,7 @@ export async function generateAnacQuiz(
   totalQuestions: number = 60,
   onProgress?: (generatedCount: number) => void
 ): Promise<QuizQuestion[]> {
-  const BATCH_SIZE = 10; // Gera 10 questões por chamada de API
+  const BATCH_SIZE = 5; // REDUZIDO PARA 5 PARA EVITAR TIMEOUT DO SERVIDOR
   const numBatches = Math.ceil(totalQuestions / BATCH_SIZE);
   let allQuestions: QuizQuestion[] = [];
 
@@ -32,11 +58,7 @@ export async function generateAnacQuiz(
     });
 
     if (!response.ok) {
-      // Se qualquer lote falhar, para e reporta o erro DETALHADO.
-      const errorText = await response.text();
-      console.error("O servidor retornou um erro:", errorText);
-      // ATUALIZAÇÃO: Lança o erro exato do servidor para ser exibido na UI.
-      throw new Error(`Ocorreu um erro inesperado no servidor. Por favor, tente novamente mais tarde. (Detalhes: ${errorText})`);
+        await handleApiError(response);
     }
 
     const batchQuestions: QuizQuestion[] = await response.json();
@@ -89,10 +111,7 @@ export async function generateChapterQuiz(
   });
 
   if (!response.ok) {
-      const errorText = await response.text();
-      console.error("O servidor retornou um erro ao gerar o quiz do capítulo:", errorText);
-      // ATUALIZAÇÃO: Lança o erro exato do servidor para ser exibido na UI.
-      throw new Error(`Ocorreu um erro inesperado no servidor ao gerar o quiz do capítulo. (Detalhes: ${errorText})`);
+      await handleApiError(response);
   }
 
   const quiz: QuizQuestion[] = await response.json();
